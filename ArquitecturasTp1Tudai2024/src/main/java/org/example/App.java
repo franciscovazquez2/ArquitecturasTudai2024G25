@@ -18,13 +18,15 @@ public class App {
             System.exit(1);
         }
 
-        String uri = "jdbc:mysql://localhost:3306/testdb";
+        String uri = "jdbc:mysql://localhost:3306/dbArquiTpG25";
         try{
-            Connection conn = DriverManager.getConnection(uri,"user", "userpassword");//en derby el parametro es solo uri
+            Connection conn = DriverManager.getConnection(uri,"user", "password");//en derby el parametro es solo uri
             conn.setAutoCommit(false);//por defecto se encuentra en true y no permite commitear.
-            //createTables(conn);
-            //addPersona(conn, 1, "pancho", 33);
-            //addPersona(conn, 2, "vico", 28);
+            /*
+            createTables(conn);
+            addPersona(conn, 1, "pancho", 33);
+            addPersona(conn, 2, "vico", 28);
+            */
             String select = "SELECT * FROM persona";
             PreparedStatement ps = conn.prepareStatement(select);
             ResultSet rs = ps.executeQuery();
