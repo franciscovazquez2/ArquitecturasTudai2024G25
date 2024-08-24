@@ -22,11 +22,9 @@ public class App {
         try{
             Connection conn = DriverManager.getConnection(uri,"user", "password");//en derby el parametro es solo uri
             conn.setAutoCommit(false);//por defecto se encuentra en true y no permite commitear.
-            /*
-            createTables(conn);
-            addPersona(conn, 1, "pancho", 33);
-            addPersona(conn, 2, "vico", 28);
-            */
+            //createTables(conn);
+            //addPersona(conn, 1, "pancho", 33);
+            //addPersona(conn, 2, "vico", 28);
             String select = "SELECT * FROM persona";
             PreparedStatement ps = conn.prepareStatement(select);
             ResultSet rs = ps.executeQuery();
