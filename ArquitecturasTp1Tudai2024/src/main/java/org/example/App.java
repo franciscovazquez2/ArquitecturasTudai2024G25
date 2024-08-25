@@ -4,7 +4,8 @@ import Dao.CustomerDAO;
 import Dao.MYSQLClientDAO;
 import Factory.DAOFactory;
 
-import java.sql.SQLException;
+import java.lang.reflect.InvocationTargetException;
+import java.sql.*;
 
 public class App {
     public static void main(String[] args) throws SQLException {
@@ -13,15 +14,15 @@ public class App {
 
 
 
-    }}
         //---------------------------------------------------------------
 
-/*
+
         String driver = "com.mysql.cj.jdbc.Driver";
         try {
             Class.forName(driver).getDeclaredConstructor().newInstance();
-        } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
-                 | NoSuchMethodException | SecurityException | ClassNotFoundException e) {
+        } catch (InstantiationException | IllegalAccessException | IllegalArgumentException |
+                 NoSuchMethodException | SecurityException | ClassNotFoundException |
+                 InvocationTargetException e) {
             e.printStackTrace();
             System.exit(1);
         }
@@ -74,4 +75,3 @@ public class App {
         conn.commit();
     }
 }
-*/

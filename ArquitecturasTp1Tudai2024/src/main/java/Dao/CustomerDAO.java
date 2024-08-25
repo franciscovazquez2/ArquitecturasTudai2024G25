@@ -9,5 +9,5 @@ public interface CustomerDAO {
     public boolean deleteCustomer();
     public List findCustomer();
     public boolean updateCustomer();
-    public List selectCustomersRS();
+    public List selectCustomersRS() throws SQLException;
 }

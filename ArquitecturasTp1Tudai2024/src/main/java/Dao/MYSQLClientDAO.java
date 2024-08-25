@@ -1,6 +1,10 @@
 package Dao;
 
+import Entity.Client;
+
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class MYSQLClientDAO implements CustomerDAO{
@@ -53,7 +57,11 @@ public class MYSQLClientDAO implements CustomerDAO{
     }
 
     @Override
-    public List selectCustomersRS() {
-        return List.of();
+    public List selectCustomersRS() throws SQLException {
+        Connection conn = getConnection();
+        String select = "SELECT * FROM persona";
+        PreparedStatement ps = conn.prepareStatement(select);
+        ResultSet rs = ps.executeQuery();
+        conn.close();
     }
 }
