@@ -1,14 +1,13 @@
 package Factory;
 
-import Dao.CustomerDAO;
+import Dao.Interfaces.ClientDAO;
+import Dao.Interfaces.FactureDAO;
+import Dao.Interfaces.ProductDAO;
 import Dao.MYSQLClientDAO;
 import Dao.MYSQLFactureDAO;
 import Dao.MYSQLProductDAO;
 
 import java.lang.reflect.InvocationTargetException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 
 public class MYSQLDaoFactory extends DAOFactory {
 
@@ -26,19 +25,19 @@ public class MYSQLDaoFactory extends DAOFactory {
     }
 
     @Override
-    public CustomerDAO getClientDAO() {
+    public ClientDAO getClientDAO() {
         createDriver();
         return new MYSQLClientDAO();
     }
 
     @Override
-    public CustomerDAO getFactureDAO() {
+    public FactureDAO getFactureDAO() {
         createDriver();
         return new MYSQLFactureDAO();
     }
 
     @Override
-    public CustomerDAO getProductDAO() {
+    public ProductDAO getProductDAO() {
         createDriver();
         return new MYSQLProductDAO();
     }

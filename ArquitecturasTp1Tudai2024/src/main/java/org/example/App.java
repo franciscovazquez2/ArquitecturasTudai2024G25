@@ -1,7 +1,6 @@
 package org.example;
 
-import Dao.CustomerDAO;
-import Dao.MYSQLClientDAO;
+import Dao.Interfaces.ClientDAO;
 import Factory.DAOFactory;
 
 import java.lang.reflect.InvocationTargetException;
@@ -9,8 +8,6 @@ import java.sql.*;
 
 public class App {
     public static void main(String[] args) throws SQLException {
-
-
 
 
 

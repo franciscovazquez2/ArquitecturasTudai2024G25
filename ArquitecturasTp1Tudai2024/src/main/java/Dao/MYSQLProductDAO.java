@@ -1,36 +1,34 @@
 package Dao;
 
+import Dao.Interfaces.ProductDAO;
+
 import java.sql.SQLException;
 import java.util.List;
 
-public class MYSQLProductDAO implements CustomerDAO{
-    @Override
-    public void pruebaSelect() throws SQLException {
-
-    }
+public class MYSQLProductDAO implements ProductDAO {
 
     @Override
-    public int insertCustomer() {
+    public int insertCustomer() throws SQLException {
         return 0;
     }
 
     @Override
-    public boolean deleteCustomer() {
+    public boolean deleteCustomer() throws SQLException {
         return false;
     }
 
     @Override
-    public List findCustomer() {
+    public List findCustomer() throws SQLException {
         return List.of();
     }
 
     @Override
-    public boolean updateCustomer() {
+    public boolean updateCustomer() throws SQLException {
         return false;
     }
 
     @Override
-    public List selectCustomersRS() {
+    public List selectCustomersRS() throws SQLException {
         return List.of();
     }
 }

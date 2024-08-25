@@ -1,13 +1,13 @@
 package Dao;
 
+import Dao.Interfaces.ClientDAO;
 import Entity.Client;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
-public class MYSQLClientDAO implements CustomerDAO{
+public class MYSQLClientDAO implements ClientDAO {
 
     private static final String URI = "jdbc:mysql://localhost:3306/dbArquiTpG25";
 
@@ -22,33 +22,49 @@ public class MYSQLClientDAO implements CustomerDAO{
         }
     }
 
-    // Metodo de prueba  -- ELIMINAR
-    public void pruebaSelect() throws SQLException {
+
+    @Override
+    public int insertCustomer(int id, String name, String email) throws SQLException {
         Connection conn = getConnection();
-        String select = "SELECT * FROM persona";
-        PreparedStatement ps = conn.prepareStatement(select);
-        ResultSet rs = ps.executeQuery();
-        while(rs.next()){
-            System.out.println("id: "+rs.getInt(1)+
-                    ", name: "+rs.getString(2)+
-                    ", edad: "+rs.getInt(3));
-        }
+        String insert = "INSERT INTO persona(id, name, email) VALUES (?,?,?)";
+        PreparedStatement ps = conn.prepareStatement(insert);
+        ps.setInt(1, id);
+        ps.setString(2, name);
+        ps.setString(3, email);
+        int value = ps.executeUpdate();
+        ps.close();
+        conn.commit();
         conn.close();
+        return value;
     }
 
     @Override
-    public int insertCustomer() {
-        return 0;
+    public boolean deleteCustomer(int id) throws SQLException {
+        Connection conn = getConnection();
+        String rv = "DELETE FROM persona WHERE id = ?";
+        PreparedStatement ps = conn.prepareStatement(rv);
+        ps.setInt(1, id);
+        boolean value = ps.execute();
+        ps.close();
+        conn.commit();
+        return value;
     }
 
     @Override
-    public boolean deleteCustomer() {
-        return false;
-    }
-
-    @Override
-    public List findCustomer() {
-        return List.of();
+    public List findCustomer(int id) throws SQLException {
+        List<Client> listClient = new ArrayList<>();
+        Connection conn = getConnection();
+        String select = "SELECT * FROM persona WHERE id = ?";
+        PreparedStatement ps = conn.prepareStatement(select);
+        ps.setInt(1,id);
+        ResultSet rs = ps.executeQuery();
+        ps.close();
+        conn.close();
+        while(rs.next()){
+            Client c1 = new Client(rs.getInt(1),rs.getString(2),rs.getString(3));
+            listClient.add(c1);
+        }
+        return listClient;
     }
 
     @Override
@@ -58,10 +74,17 @@ public class MYSQLClientDAO implements CustomerDAO{
 
     @Override
     public List selectCustomersRS() throws SQLException {
+        List<Client> listClient = new ArrayList<>();
         Connection conn = getConnection();
         String select = "SELECT * FROM persona";
         PreparedStatement ps = conn.prepareStatement(select);
         ResultSet rs = ps.executeQuery();
+        ps.close();
         conn.close();
+        while(rs.next()){
+            Client c1 = new Client(rs.getInt(1),rs.getString(2),rs.getString(3));
+            listClient.add(c1);
+        }
+        return listClient;
     }
 }
