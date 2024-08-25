@@ -1,11 +1,11 @@
-package Dao;
+package Daos.MYSQLDaos;
 
-import Dao.Interfaces.FactureDAO;
+import Daos.Interfaces.ProductDAO;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public class MYSQLFactureDAO implements FactureDAO {
+public class MYSQLProductDAO implements ProductDAO {
 
     @Override
     public int insertCustomer() throws SQLException {

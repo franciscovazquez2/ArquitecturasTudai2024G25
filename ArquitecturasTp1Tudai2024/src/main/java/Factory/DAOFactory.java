@@ -1,8 +1,8 @@
 package Factory;
 
-import Dao.Interfaces.ClientDAO;
-import Dao.Interfaces.FactureDAO;
-import Dao.Interfaces.ProductDAO;
+import Daos.Interfaces.ClientDAO;
+import Daos.Interfaces.FactureDAO;
+import Daos.Interfaces.ProductDAO;
 
 public abstract class DAOFactory {
     public static final int MYSQL_JDBC = 1;

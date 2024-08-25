@@ -1,9 +1,9 @@
-package Dao.Interfaces;
+package Daos.Interfaces;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public interface ProductDAO {
+public interface FactureDAO {
     int insertCustomer() throws SQLException;
 
     boolean deleteCustomer() throws SQLException;
