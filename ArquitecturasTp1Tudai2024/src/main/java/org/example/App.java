@@ -1,14 +1,22 @@
 package org.example;
 
-import java.lang.reflect.InvocationTargetException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import Dao.CustomerDAO;
+import Dao.MYSQLClientDAO;
+import Factory.DAOFactory;
+
 import java.sql.SQLException;
 
 public class App {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
+
+
+
+
+
+    }}
+        //---------------------------------------------------------------
+
+/*
         String driver = "com.mysql.cj.jdbc.Driver";
         try {
             Class.forName(driver).getDeclaredConstructor().newInstance();
@@ -22,10 +30,17 @@ public class App {
         try{
             Connection conn = DriverManager.getConnection(uri,"user", "password");//en derby el parametro es solo uri
             conn.setAutoCommit(false);//por defecto se encuentra en true y no permite commitear.
+<<<<<<< HEAD
             //createTables(conn);
             //addPersona(conn, 1, "pancho", 33);
             //addPersona(conn, 2, "vico", 28);
             removePersona(conn,1);
+=======
+            createTables(conn);
+            addPersona(conn, 1, "pancho", 33);
+            addPersona(conn, 2, "vico", 28);
+            //removePersona(conn,1);
+>>>>>>> 817852579d624113e9b2c05c915c1d0cd900f801
             String select = "SELECT * FROM persona";
             PreparedStatement ps = conn.prepareStatement(select);
             ResultSet rs = ps.executeQuery();
@@ -65,5 +80,5 @@ public class App {
         ps.close();
         conn.commit();
     }
-
 }
+*/
