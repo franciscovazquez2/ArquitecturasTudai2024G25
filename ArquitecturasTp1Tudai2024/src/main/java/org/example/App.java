@@ -25,7 +25,7 @@ public class App {
             //createTables(conn);
             //addPersona(conn, 1, "pancho", 33);
             //addPersona(conn, 2, "vico", 28);
-            //removePersona(conn,1);
+            removePersona(conn,1);
             String select = "SELECT * FROM persona";
             PreparedStatement ps = conn.prepareStatement(select);
             ResultSet rs = ps.executeQuery();
