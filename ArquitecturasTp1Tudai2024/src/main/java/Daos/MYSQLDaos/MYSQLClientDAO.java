@@ -1,6 +1,6 @@
-package Dao;
+package Daos.MYSQLDaos;
 
-import Dao.Interfaces.ClientDAO;
+import Daos.Interfaces.ClientDAO;
 import Entity.Client;
 
 import java.sql.*;
@@ -58,12 +58,13 @@ public class MYSQLClientDAO implements ClientDAO {
         PreparedStatement ps = conn.prepareStatement(select);
         ps.setInt(1,id);
         ResultSet rs = ps.executeQuery();
-        ps.close();
-        conn.close();
+
         while(rs.next()){
             Client c1 = new Client(rs.getInt(1),rs.getString(2),rs.getString(3));
             listClient.add(c1);
         }
+        ps.close();
+        conn.close();
         return listClient;
     }
 
@@ -79,12 +80,13 @@ public class MYSQLClientDAO implements ClientDAO {
         String select = "SELECT * FROM persona";
         PreparedStatement ps = conn.prepareStatement(select);
         ResultSet rs = ps.executeQuery();
-        ps.close();
-        conn.close();
+
         while(rs.next()){
             Client c1 = new Client(rs.getInt(1),rs.getString(2),rs.getString(3));
             listClient.add(c1);
         }
+        ps.close();
+        conn.close();
         return listClient;
     }
 }

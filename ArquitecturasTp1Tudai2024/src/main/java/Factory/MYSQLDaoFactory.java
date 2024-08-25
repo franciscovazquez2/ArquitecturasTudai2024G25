@@ -1,11 +1,11 @@
 package Factory;
 
-import Dao.Interfaces.ClientDAO;
-import Dao.Interfaces.FactureDAO;
-import Dao.Interfaces.ProductDAO;
-import Dao.MYSQLClientDAO;
-import Dao.MYSQLFactureDAO;
-import Dao.MYSQLProductDAO;
+import Daos.Interfaces.ClientDAO;
+import Daos.Interfaces.FactureDAO;
+import Daos.Interfaces.ProductDAO;
+import Daos.MYSQLDaos.MYSQLClientDAO;
+import Daos.MYSQLDaos.MYSQLFactureDAO;
+import Daos.MYSQLDaos.MYSQLProductDAO;
 
 import java.lang.reflect.InvocationTargetException;
 
