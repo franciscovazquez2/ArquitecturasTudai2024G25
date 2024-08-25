@@ -25,6 +25,7 @@ public class App {
             //createTables(conn);
             //addPersona(conn, 1, "pancho", 33);
             //addPersona(conn, 2, "vico", 28);
+            //removePersona(conn,1);
             String select = "SELECT * FROM persona";
             PreparedStatement ps = conn.prepareStatement(select);
             ResultSet rs = ps.executeQuery();
@@ -52,6 +53,15 @@ public class App {
         ps.setString(2, name);
         ps.setInt(3, edad);
         ps.executeUpdate();
+        ps.close();
+        conn.commit();
+    }
+
+    public static void removePersona (Connection conn, int id) throws SQLException {
+        String rv = "DELETE FROM persona WHERE id = ?";
+        PreparedStatement ps = conn.prepareStatement(rv);
+        ps.setInt(1, id);
+        ps.execute();
         ps.close();
         conn.commit();
     }
