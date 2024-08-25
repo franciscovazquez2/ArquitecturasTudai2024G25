@@ -6,7 +6,10 @@ import Factory.DAOFactory;
 
 import java.lang.reflect.InvocationTargetException;
 import java.sql.*;
+<<<<<<< HEAD
 import java.util.List;
+=======
+>>>>>>> c6c85f3a63cf7a15bbbf5a055f9dc261df20c6a4
 
 public class App {
     public static void main(String[] args) throws SQLException {
@@ -25,12 +28,18 @@ public class App {
         l2 = c1.selectCustomersRS();
         l2.forEach(next -> System.out.println(next.toString()));
 
+<<<<<<< HEAD
         c1.deleteCustomer(2);
         l2 = c1.selectCustomersRS();
         l2.forEach(next -> System.out.println(next.toString()));
     }}
         //---------------------------------------------------------------
 /*
+=======
+    //}}
+        //---------------------------------------------------------------
+
+>>>>>>> c6c85f3a63cf7a15bbbf5a055f9dc261df20c6a4
 
         String driver = "com.mysql.cj.jdbc.Driver";
         try {
@@ -46,9 +55,19 @@ public class App {
         try{
             Connection conn = DriverManager.getConnection(uri,"user", "password");//en derby el parametro es solo uri
             conn.setAutoCommit(false);//por defecto se encuentra en true y no permite commitear.
+<<<<<<< HEAD
             createTables(conn);
             addPersona(conn, 1, "pancho", "panchito@tito.com.ar");
             addPersona(conn, 2, "vico", "vikito@kito.com.ar");
+=======
+            //createTables(conn);
+            //addPersona(conn, 1, "pancho", 33);
+            //addPersona(conn, 2, "vico", 28);
+            //removePersona(conn,1);
+            //createTables(conn);
+            //addPersona(conn, 1, "pancho", 33);
+            //addPersona(conn, 2, "vico", 28);
+>>>>>>> c6c85f3a63cf7a15bbbf5a055f9dc261df20c6a4
             //removePersona(conn,1);
             String select = "SELECT * FROM persona";
             PreparedStatement ps = conn.prepareStatement(select);
@@ -90,4 +109,3 @@ public class App {
         conn.commit();
     }
 }
-*/
