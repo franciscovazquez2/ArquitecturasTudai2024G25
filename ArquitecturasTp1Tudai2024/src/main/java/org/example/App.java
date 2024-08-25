@@ -47,7 +47,7 @@ public class App {
 
     public static void addPersona(Connection conn, int id, String name, int edad) throws SQLException{
         String insert = "INSERT INTO persona(id, name, edad) VALUES (?,?,?)";
-        java.sql.PreparedStatement ps = conn.prepareStatement(insert);
+        PreparedStatement ps = conn.prepareStatement(insert);
         ps.setInt(1, id);
         ps.setString(2, name);
         ps.setInt(3, edad);
