@@ -1,25 +1,16 @@
 package org.example;
 
 import Daos.Interfaces.ClientDAO;
-<<<<<<< HEAD
 import Daos.Interfaces.ProductDAO;
 import Daos.MYSQLDaos.MYSQLClientDAO;
 import Daos.MYSQLDaos.MYSQLProductDAO;
 import Entity.Product;
 import Factory.ConnectionMYQSL;
-=======
-
->>>>>>> ef43a1cdf564c6dcd47ba10cf67b38af6f475814
 import Factory.DAOFactory;
-
 import java.sql.*;
-<<<<<<< HEAD
 import java.util.List;
-=======
-
 import java.util.List;
 
->>>>>>> ef43a1cdf564c6dcd47ba10cf67b38af6f475814
 
 public class App {
     public static void main(String[] args) throws SQLException {
@@ -146,6 +137,3 @@ public class App {
     }
 <<<<<<< HEAD
 }*/
-=======
-}
->>>>>>> ef43a1cdf564c6dcd47ba10cf67b38af6f475814
