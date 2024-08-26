@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-<<<<<<< HEAD
-      <module fileurl="file://$PROJECT_DIR$/.idea/tpArqui.iml" filepath="$PROJECT_DIR$/.idea/tpArqui.iml" />
-=======
       <module fileurl="file://$PROJECT_DIR$/.idea/ArquitecturasTudai2024G25.iml" filepath="$PROJECT_DIR$/.idea/ArquitecturasTudai2024G25.iml" />
->>>>>>> 817852579d624113e9b2c05c915c1d0cd900f801
     </modules>
   </component>
 </project>
