@@ -2,6 +2,7 @@ package Daos.MYSQLDaos;
 
 import Daos.Interfaces.FactureDAO;
 import Entity.Facture;
+import Entity.Product;
 import Factory.ConnectionMYQSL;
 
 import java.sql.Connection;
@@ -28,26 +29,31 @@ public class MYSQLFactureDAO implements FactureDAO {
 
     @Override
     public void insert(Facture f) throws SQLException {
-        
+        String sql = "INSERT INTO facture(idClient)VALUES(?)";
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setInt(1,f.getIdClient());
+
+        ps.executeUpdate();
+        conn.commit();
     }
 
     @Override
-    public boolean deleteCustomer() throws SQLException {
+    public boolean delete(Facture f) throws SQLException {
         return false;
     }
 
     @Override
-    public List findCustomer() throws SQLException {
-        return List.of();
+    public List<Facture> selectAll() throws SQLException {
+        return null;
     }
 
     @Override
-    public boolean updateCustomer() throws SQLException {
+    public boolean update() throws SQLException {
         return false;
     }
 
     @Override
-    public List selectCustomersRS() throws SQLException {
-        return List.of();
+    public Facture select() throws SQLException {
+        return null;
     }
 }

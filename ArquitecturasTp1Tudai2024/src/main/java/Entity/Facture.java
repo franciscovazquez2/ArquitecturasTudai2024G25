@@ -9,6 +9,13 @@ public class Facture {
         this.idClient = idClient;
     }
 
+    public Facture (Client c){
+        this.idClient=c.getIdClient();
+    }
+
+    public Facture (int id){
+        this.idClient=id;
+    }
     public int getIdFacture() {
         return idFacture;
     }

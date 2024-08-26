@@ -1,11 +1,13 @@
 package Daos.Interfaces;
 
+import Entity.Client;
+
 import java.sql.SQLException;
 import java.util.List;
 
 public interface ClientDAO {
 
-    int insertCustomer(int id, String name, String email) throws SQLException;
+    int insert(Client c) throws SQLException;
 
     boolean deleteCustomer(int id) throws SQLException;
 

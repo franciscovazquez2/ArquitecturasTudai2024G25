@@ -15,12 +15,13 @@ public class MYSQLDaoFactory extends DAOFactory {
 
     public static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 
+    //constructor crea el driver una unica vez
     public MYSQLDaoFactory(){
         createDriver();
     }
 
     //creacion driver se puede hacer en bloque static
-    private void createDriver() {
+    public static void createDriver() {
         try {
             Class.forName(DRIVER).getDeclaredConstructor().newInstance();
         } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
@@ -31,20 +32,17 @@ public class MYSQLDaoFactory extends DAOFactory {
     }
 
     @Override
-    public ClientDAO getClientDAO() {
-        createDriver();
-        return new MYSQLClientDAO();
+    public ClientDAO getClientDAO() throws SQLException {
+        return MYSQLClientDAO.getInstance();
     }
 
     @Override
     public FactureDAO getFactureDAO() throws SQLException {
-        //createDriver();
         return MYSQLFactureDAO.getInstance();
     }
 
     @Override
     public ProductDAO getProductDAO() throws SQLException {
-        //createDriver();
         return MYSQLProductDAO.getInstance();
     }
 }
