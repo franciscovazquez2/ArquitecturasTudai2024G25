@@ -8,12 +8,18 @@ import Daos.MYSQLDaos.MYSQLFactureDAO;
 import Daos.MYSQLDaos.MYSQLProductDAO;
 
 import java.lang.reflect.InvocationTargetException;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class MYSQLDaoFactory extends DAOFactory {
 
     public static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 
-    // Metodo para crear el driver --- VER SI SE PUEDE MEJORAR O COLOCAR EN OTRO LADO ya que se llama en cada get y el driver es uno solo
+    public MYSQLDaoFactory(){
+        createDriver();
+    }
+
+    //creacion driver se puede hacer en bloque static
     private void createDriver() {
         try {
             Class.forName(DRIVER).getDeclaredConstructor().newInstance();
@@ -31,14 +37,14 @@ public class MYSQLDaoFactory extends DAOFactory {
     }
 
     @Override
-    public FactureDAO getFactureDAO() {
-        createDriver();
-        return new MYSQLFactureDAO();
+    public FactureDAO getFactureDAO() throws SQLException {
+        //createDriver();
+        return MYSQLFactureDAO.getInstance();
     }
 
     @Override
-    public ProductDAO getProductDAO() {
-        createDriver();
-        return new MYSQLProductDAO();
+    public ProductDAO getProductDAO() throws SQLException {
+        //createDriver();
+        return MYSQLProductDAO.getInstance();
     }
 }

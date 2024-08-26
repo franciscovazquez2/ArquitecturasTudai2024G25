@@ -1,20 +1,44 @@
 package org.example;
 
 import Daos.Interfaces.ClientDAO;
+import Daos.Interfaces.ProductDAO;
 import Daos.MYSQLDaos.MYSQLClientDAO;
+import Daos.MYSQLDaos.MYSQLProductDAO;
+import Entity.Product;
+import Factory.ConnectionMYQSL;
 import Factory.DAOFactory;
 
 import java.lang.reflect.InvocationTargetException;
 import java.sql.*;
-<<<<<<< HEAD
 import java.util.List;
-=======
->>>>>>> c6c85f3a63cf7a15bbbf5a055f9dc261df20c6a4
 
 public class App {
     public static void main(String[] args) throws SQLException {
 
-        DAOFactory f1 = DAOFactory.getDAOFactory(DAOFactory.MYSQL_JDBC);
+        Connection conn = ConnectionMYQSL.getConnection();
+        //createTable(conn);
+
+        DAOFactory daoFactory = DAOFactory.getDAOFactory(DAOFactory.MYSQL_JDBC);
+        if(daoFactory!=null){
+            ProductDAO productDAO = daoFactory.getProductDAO();
+
+            Product product = new Product(1,"pablo",5L);
+            Product product2 = new Product(2,"juan",6L);
+
+            productDAO.insert(product2);
+
+            //productDAO.delete(product2);
+        }
+        conn.close();
+    }
+
+    public static void createTable(Connection conn) throws SQLException{
+        String table= "CREATE TABLE product(idProduct INT, name VARCHAR(500), value float)";
+        conn.prepareStatement(table).execute();
+        conn.commit();
+    }
+}
+      /*  DAOFactory f1 = DAOFactory.getDAOFactory(DAOFactory.MYSQL_JDBC);
         ClientDAO c1 = f1.getClientDAO();
 
         List l1 = c1.findCustomer(2);
@@ -28,13 +52,12 @@ public class App {
         l2 = c1.selectCustomersRS();
         l2.forEach(next -> System.out.println(next.toString()));
 
-<<<<<<< HEAD
         c1.deleteCustomer(2);
         l2 = c1.selectCustomersRS();
         l2.forEach(next -> System.out.println(next.toString()));
     }}
         //---------------------------------------------------------------
-/*
+
 =======
     //}}
         //---------------------------------------------------------------
@@ -108,4 +131,4 @@ public class App {
         ps.close();
         conn.commit();
     }
-}
+}*/

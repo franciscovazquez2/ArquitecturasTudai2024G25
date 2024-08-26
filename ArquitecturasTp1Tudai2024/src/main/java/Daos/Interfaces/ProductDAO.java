@@ -1,16 +1,18 @@
 package Daos.Interfaces;
 
+import Entity.Product;
+
 import java.sql.SQLException;
 import java.util.List;
 
 public interface ProductDAO {
-    int insertCustomer() throws SQLException;
+    void insert(Product p) throws SQLException;
 
-    boolean deleteCustomer() throws SQLException;
+    boolean delete(Product p) throws SQLException;
 
-    List findCustomer() throws SQLException;
+    List<Product> selectAll() throws SQLException;
 
-    public boolean updateCustomer() throws SQLException;
+    boolean update() throws SQLException;
 
-    public List selectCustomersRS() throws SQLException;
+    Product select(Product p) throws SQLException;
 }
