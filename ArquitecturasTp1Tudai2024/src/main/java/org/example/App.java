@@ -1,16 +1,25 @@
 package org.example;
 
 import Daos.Interfaces.ClientDAO;
+<<<<<<< HEAD
 import Daos.Interfaces.ProductDAO;
 import Daos.MYSQLDaos.MYSQLClientDAO;
 import Daos.MYSQLDaos.MYSQLProductDAO;
 import Entity.Product;
 import Factory.ConnectionMYQSL;
+=======
+
+>>>>>>> ef43a1cdf564c6dcd47ba10cf67b38af6f475814
 import Factory.DAOFactory;
 
-import java.lang.reflect.InvocationTargetException;
 import java.sql.*;
+<<<<<<< HEAD
 import java.util.List;
+=======
+
+import java.util.List;
+
+>>>>>>> ef43a1cdf564c6dcd47ba10cf67b38af6f475814
 
 public class App {
     public static void main(String[] args) throws SQLException {
@@ -52,6 +61,10 @@ public class App {
         l2 = c1.selectCustomersRS();
         l2.forEach(next -> System.out.println(next.toString()));
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> ef43a1cdf564c6dcd47ba10cf67b38af6f475814
         c1.deleteCustomer(2);
         l2 = c1.selectCustomersRS();
         l2.forEach(next -> System.out.println(next.toString()));
@@ -62,7 +75,8 @@ public class App {
     //}}
         //---------------------------------------------------------------
 
->>>>>>> c6c85f3a63cf7a15bbbf5a055f9dc261df20c6a4
+
+
 
         String driver = "com.mysql.cj.jdbc.Driver";
         try {
@@ -78,11 +92,11 @@ public class App {
         try{
             Connection conn = DriverManager.getConnection(uri,"user", "password");//en derby el parametro es solo uri
             conn.setAutoCommit(false);//por defecto se encuentra en true y no permite commitear.
-<<<<<<< HEAD
+
             createTables(conn);
             addPersona(conn, 1, "pancho", "panchito@tito.com.ar");
             addPersona(conn, 2, "vico", "vikito@kito.com.ar");
-=======
+
             //createTables(conn);
             //addPersona(conn, 1, "pancho", 33);
             //addPersona(conn, 2, "vico", 28);
@@ -90,7 +104,6 @@ public class App {
             //createTables(conn);
             //addPersona(conn, 1, "pancho", 33);
             //addPersona(conn, 2, "vico", 28);
->>>>>>> c6c85f3a63cf7a15bbbf5a055f9dc261df20c6a4
             //removePersona(conn,1);
             String select = "SELECT * FROM persona";
             PreparedStatement ps = conn.prepareStatement(select);
@@ -131,4 +144,8 @@ public class App {
         ps.close();
         conn.commit();
     }
+<<<<<<< HEAD
 }*/
+=======
+}
+>>>>>>> ef43a1cdf564c6dcd47ba10cf67b38af6f475814
