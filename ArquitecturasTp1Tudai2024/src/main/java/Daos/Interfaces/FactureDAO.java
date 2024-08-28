@@ -8,11 +8,11 @@ import java.util.List;
 public interface FactureDAO {
     void insert(Facture f) throws SQLException;
 
-    boolean deleteCustomer() throws SQLException;
+    boolean delete(Facture f) throws SQLException;
 
-    List findCustomer() throws SQLException;
+    List<Facture> selectAll() throws SQLException;
 
-    public boolean updateCustomer() throws SQLException;
+    boolean update() throws SQLException;
 
-    public List selectCustomersRS() throws SQLException;
+    Facture select() throws SQLException;
 }

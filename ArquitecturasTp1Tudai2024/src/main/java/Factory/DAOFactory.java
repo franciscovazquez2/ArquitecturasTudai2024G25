@@ -10,7 +10,7 @@ public abstract class DAOFactory {
     public static final int MYSQL_JDBC = 1;
     public static final int DERBY_JDBC = 2;
 
-    public abstract ClientDAO getClientDAO();
+    public abstract ClientDAO getClientDAO() throws SQLException;
     public abstract FactureDAO getFactureDAO() throws SQLException;
     public abstract ProductDAO getProductDAO() throws SQLException;
 

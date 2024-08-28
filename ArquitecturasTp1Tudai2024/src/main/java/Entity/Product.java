@@ -5,10 +5,14 @@ public class Product {
     private String name;
     private float value;
 
-    public Product(int idProduct, String name, float value) {
-        this.idProduct = idProduct;
+    public Product(String name, float value) {
         this.name = name;
         this.value = value;
+    }
+    public Product(int idProduct,String name, float value) {
+        this.name = name;
+        this.value = value;
+        this.idProduct=idProduct;
     }
 
     public int getIdProduct() {
