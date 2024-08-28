@@ -20,7 +20,7 @@ public class App {
     public static void main(String[] args) throws SQLException {
 
         Connection conn = ConnectionMYQSL.getConnection();
-        /* creacion de esquema completo
+        /* creacion de esquema completo*
         SchemaMYSQL schemaMYSQL = new SchemaMYSQL();
         schemaMYSQL.createSchema();
         */
@@ -31,17 +31,22 @@ public class App {
             ClientDAO clientDAO = daoFactory.getClientDAO();
             FactureDAO factureDAO = daoFactory.getFactureDAO();
 
-            Client client1 = new Client("pablo","olgaolga@gmail.com");
-            Client client2 = new Client("Nico","olgaolga@hotmail.com");
-            clientDAO.insert(client1);clientDAO.insert(client2);
+            //Client client1 = new Client("pablo","olgaolga@gmail.com");
+            //Client client2 = new Client("Nico","olgaolga@hotmail.com");
+            //clientDAO.insert(client1);clientDAO.insert(client2);
 
-            Facture facture1 = new Facture(5);
-            factureDAO.insert(facture1);
+            //Facture facture1 = new Facture(1);
+            //factureDAO.insert(facture1);
 
-
+            //Product product1= new Product("Prueba", 50);
+            //Product product2= new Product("Vaso", 40);
             //productDAO.insert(product2);
+            //boolean delete= productDAO.delete(3);//
+            List<Product>listaProductos = productDAO.selectAll();
+            for(Product p : listaProductos){
+                System.out.println(p.getIdProduct()+","+p.getName()+","+p.getValue());
+            }
 
-            //productDAO.delete(product2);
         }
         conn.close();
     }

@@ -7,8 +7,7 @@ import java.util.List;
 
 public interface ProductDAO {
     void insert(Product p) throws SQLException;
-
-    boolean delete(Product p) throws SQLException;
+    boolean delete(int id) throws SQLException;
 
     List<Product> selectAll() throws SQLException;
 
