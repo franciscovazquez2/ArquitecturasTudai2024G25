@@ -35,12 +35,16 @@ public class App {
             //Client client2 = new Client("Nico","olgaolga@hotmail.com");
             //clientDAO.insert(client1);clientDAO.insert(client2);
 
-            //Facture facture1 = new Facture(1);
-            //factureDAO.insert(facture1);
+            /*
+            Facture facture1 = new Facture(2);
+            factureDAO.insert(facture1);
 
-            //Product product1= new Product("Prueba", 50);
-            //Product product2= new Product("Vaso", 40);
-            //productDAO.insert(product2);
+            Product product1= new Product("Prueba", 50);
+            Product product2= new Product("Vaso", 40);
+            productDAO.insert(product2);
+            productDAO.insert(product1);
+            */
+
             //boolean delete= productDAO.delete(3);//
             List<Product>listaProductos = productDAO.selectAll();
             for(Product p : listaProductos){
