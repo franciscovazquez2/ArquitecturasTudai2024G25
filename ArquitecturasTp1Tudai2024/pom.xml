@@ -15,16 +15,26 @@
   </properties>
 
   <dependencies>
+      <dependency>
+          <groupId>com.opencsv</groupId>
+          <artifactId>opencsv</artifactId>
+          <version>5.7.1</version>
+      </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>3.8.1</version>
     </dependency>
-    <dependency>
+      <!-- https://mvnrepository.com/artifact/com.opencsv/opencsv -->
+      <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-csv -->
+
+
+
+      <dependency>
 		    <groupId>mysql</groupId>
 		    <artifactId>mysql-connector-java</artifactId>
 		    <version>8.0.28</version>
-		</dependency>
+    </dependency>
   </dependencies>
     <build>
         <plugins>

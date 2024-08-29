@@ -1,12 +1,15 @@
 package org.example;
 
+import CSVfiles.CSVreader;
 import Daos.Interfaces.ClientDAO;
 import Daos.Interfaces.FactureDAO;
+import Daos.Interfaces.Facture_ProductDAO;
 import Daos.Interfaces.ProductDAO;
 import Daos.MYSQLDaos.MYSQLClientDAO;
 import Daos.MYSQLDaos.MYSQLProductDAO;
 import Entity.Client;
 import Entity.Facture;
+import Entity.Facture_Product;
 import Entity.Product;
 import Factory.ConnectionMYQSL;
 import Factory.DAOFactory;
@@ -31,26 +34,26 @@ public class App {
             ProductDAO productDAO = daoFactory.getProductDAO();
             ClientDAO clientDAO = daoFactory.getClientDAO();
             FactureDAO factureDAO = daoFactory.getFactureDAO();
+            Facture_ProductDAO facture_productDAO = daoFactory.getFacture_ProductDAO();
 
-            //Client client1 = new Client("pablo","olgaolga@gmail.com");
-            //Client client2 = new Client("Nico","olgaolga@hotmail.com");
-            //clientDAO.insert(client1);clientDAO.insert(client2);
-
-            /*
-            Facture facture1 = new Facture(2);
-            factureDAO.insert(facture1);
-
-            Product product1= new Product("Prueba", 50);
-            Product product2= new Product("Vaso", 40);
-            productDAO.insert(product2);
-            productDAO.insert(product1);
+            CSVreader csv = new CSVreader();
+            List<Client>clients = csv.readFileClient();
+            /*List<Facture>factures = csv.readFileFacture();
+            List<Product>products = csv.readFileProduct();
+            List<Facture_Product> factureProducts = csv.readFileFactureProduct();
             */
-
-            //boolean delete= productDAO.delete(3);//
-            List<Product> listaProductos = productDAO.selectAll();
-            for (Product p : listaProductos) {
-                System.out.println(p.getIdProduct() + "," + p.getName() + "," + p.getValue());
+            for(Client c : clients){
+                clientDAO.insert(c);
             }
+            /*for(Facture f : factures){
+                factureDAO.insert(f);
+            }
+            for(Product p : products){
+                productDAO.insert(p);
+            }
+            for(Facture_Product fp : factureProducts){
+                facture_productDAO.insert(fp);
+            }*/
 
         }
         conn.close();
