@@ -2,6 +2,7 @@ package CSVfiles;
 
 import Entity.Client;
 import Entity.Facture;
+import Entity.Facture_Product;
 import Entity.Product;
 import java.io.BufferedReader;
 import java.io.FileReader;
