@@ -47,14 +47,17 @@ public class App {
             productDAO.insert(product2);
             productDAO.insert(product1);
             */
-            Facture_Product fp = new Facture_Product(2,1,4);
-            facture_productDAO.insert(fp);
+
+            //Facture_Product fp = new Facture_Product(2,1,4);
+            //facture_productDAO.insert(fp);
 
             //boolean delete= productDAO.delete(3);//
+            /*
             List<Product> listaProductos = productDAO.selectAll();
             for (Product p : listaProductos) {
                 System.out.println(p.getIdProduct() + "," + p.getName() + "," + p.getValue());
             }
+             */
 
         }
         conn.close();
