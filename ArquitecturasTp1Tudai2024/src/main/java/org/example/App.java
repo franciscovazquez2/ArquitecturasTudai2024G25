@@ -25,6 +25,7 @@ public class App {
         schemaMYSQL.createSchema();
         */
 
+
         DAOFactory daoFactory = DAOFactory.getDAOFactory(DAOFactory.MYSQL_JDBC);
         if (daoFactory != null) {
             ProductDAO productDAO = daoFactory.getProductDAO();
