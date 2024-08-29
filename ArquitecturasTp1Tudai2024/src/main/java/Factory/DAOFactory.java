@@ -2,6 +2,7 @@ package Factory;
 
 import Daos.Interfaces.ClientDAO;
 import Daos.Interfaces.FactureDAO;
+import Daos.Interfaces.Facture_ProductDAO;
 import Daos.Interfaces.ProductDAO;
 
 import java.sql.SQLException;
@@ -13,6 +14,7 @@ public abstract class DAOFactory {
     public abstract ClientDAO getClientDAO() throws SQLException;
     public abstract FactureDAO getFactureDAO() throws SQLException;
     public abstract ProductDAO getProductDAO() throws SQLException;
+    public abstract Facture_ProductDAO getFacture_ProductDAO() throws SQLException;
 
     public static DAOFactory getDAOFactory(int whichFactory) {
         switch (whichFactory) {

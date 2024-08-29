@@ -26,23 +26,35 @@ public class MYSQLFacture_ProductDAO implements Facture_ProductDAO {
         return instance;
     }
 
-    public boolean getExistencia(int id_f, int id_p){
+    private boolean getExistFacture(int id_f){
         try{
-            String sql = "SELECT * FROM facture where idFacture = ? and idProduct = ?" ;
+            String sql = "SELECT * FROM facture where idFacture = ?" ;
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, id_f);
-            ps.setInt(2, id_p);
             return ps.execute();
         }
         catch (SQLException e){
-            System.out.println(e + "Error!");
+            System.out.println(e + "Error existencia factura!");
+            return false;
+        }
+    }
+
+    private boolean getExistProduct(int id_p){
+        try{
+            String sql = "SELECT * FROM product where idProduct = ?" ;
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, id_p);
+            return ps.execute();
+        }
+        catch (SQLException e){
+            System.out.println(e + "Error existencia producto!");
             return false;
         }
     }
 
     @Override
     public void insert(Facture_Product fp) throws SQLException {
-        if(getExistencia(fp.getIdFacture(), fp.getIdProduct())) {
+        if(getExistFacture(fp.getIdFacture()) && getExistProduct(fp.getIdProduct())) {
             try {
                 String sql = "INSERT INTO facture_product(idFacture, idProduct, cantidad) VALUES(?, ?, ?)";
                 PreparedStatement ps = conn.prepareStatement(sql);

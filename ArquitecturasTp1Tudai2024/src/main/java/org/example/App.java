@@ -2,11 +2,13 @@ package org.example;
 
 import Daos.Interfaces.ClientDAO;
 import Daos.Interfaces.FactureDAO;
+import Daos.Interfaces.Facture_ProductDAO;
 import Daos.Interfaces.ProductDAO;
 import Daos.MYSQLDaos.MYSQLClientDAO;
 import Daos.MYSQLDaos.MYSQLProductDAO;
 import Entity.Client;
 import Entity.Facture;
+import Entity.Facture_Product;
 import Entity.Product;
 import Factory.ConnectionMYQSL;
 import Factory.DAOFactory;
@@ -30,6 +32,7 @@ public class App {
             ProductDAO productDAO = daoFactory.getProductDAO();
             ClientDAO clientDAO = daoFactory.getClientDAO();
             FactureDAO factureDAO = daoFactory.getFactureDAO();
+            Facture_ProductDAO facture_productDAO = daoFactory.getFacture_ProductDAO();
 
             //Client client1 = new Client("pablo","olgaolga@gmail.com");
             //Client client2 = new Client("Nico","olgaolga@hotmail.com");
@@ -44,6 +47,8 @@ public class App {
             productDAO.insert(product2);
             productDAO.insert(product1);
             */
+            Facture_Product fp = new Facture_Product(2,1,4);
+            facture_productDAO.insert(fp);
 
             //boolean delete= productDAO.delete(3);//
             List<Product> listaProductos = productDAO.selectAll();

@@ -2,9 +2,11 @@ package Factory;
 
 import Daos.Interfaces.ClientDAO;
 import Daos.Interfaces.FactureDAO;
+import Daos.Interfaces.Facture_ProductDAO;
 import Daos.Interfaces.ProductDAO;
 import Daos.MYSQLDaos.MYSQLClientDAO;
 import Daos.MYSQLDaos.MYSQLFactureDAO;
+import Daos.MYSQLDaos.MYSQLFacture_ProductDAO;
 import Daos.MYSQLDaos.MYSQLProductDAO;
 
 import java.lang.reflect.InvocationTargetException;
@@ -44,5 +46,9 @@ public class MYSQLDaoFactory extends DAOFactory {
     @Override
     public ProductDAO getProductDAO() throws SQLException {
         return MYSQLProductDAO.getInstance();
+    }
+
+    public Facture_ProductDAO getFacture_ProductDAO() throws SQLException {
+        return MYSQLFacture_ProductDAO.getInstance();
     }
 }
