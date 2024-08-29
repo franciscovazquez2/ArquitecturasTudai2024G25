@@ -1,12 +1,16 @@
 package org.example;
 
 import Daos.Interfaces.ClientDAO;
+import Daos.Interfaces.FactureDAO;
 import Daos.Interfaces.ProductDAO;
 import Daos.MYSQLDaos.MYSQLClientDAO;
 import Daos.MYSQLDaos.MYSQLProductDAO;
+import Entity.Client;
+import Entity.Facture;
 import Entity.Product;
 import Factory.ConnectionMYQSL;
 import Factory.DAOFactory;
+import SchemaDataBase.SchemaMYSQL;
 
 import java.lang.reflect.InvocationTargetException;
 import java.sql.*;
@@ -16,27 +20,42 @@ public class App {
     public static void main(String[] args) throws SQLException {
 
         Connection conn = ConnectionMYQSL.getConnection();
-        //createTable(conn);
+        /* creacion de esquema completo*
+        SchemaMYSQL schemaMYSQL = new SchemaMYSQL();
+        schemaMYSQL.createSchema();
+        */
 
         DAOFactory daoFactory = DAOFactory.getDAOFactory(DAOFactory.MYSQL_JDBC);
         if(daoFactory!=null){
             ProductDAO productDAO = daoFactory.getProductDAO();
+            ClientDAO clientDAO = daoFactory.getClientDAO();
+            FactureDAO factureDAO = daoFactory.getFactureDAO();
 
-            Product product = new Product(1,"pablo",5L);
-            Product product2 = new Product(2,"juan",6L);
+            //Client client1 = new Client("pablo","olgaolga@gmail.com");
+            //Client client2 = new Client("Nico","olgaolga@hotmail.com");
+            //clientDAO.insert(client1);clientDAO.insert(client2);
 
-            productDAO.insert(product2);
+            //Facture facture1 = new Facture(1);
+            //factureDAO.insert(facture1);
 
-            //productDAO.delete(product2);
+            //Product product1= new Product("Prueba", 50);
+            //Product product2= new Product("Vaso", 40);
+            //productDAO.insert(product2);
+            //boolean delete= productDAO.delete(3);//
+            List<Product>listaProductos = productDAO.selectAll();
+            for(Product p : listaProductos){
+                System.out.println(p.getIdProduct()+","+p.getName()+","+p.getValue());
+            }
+
         }
         conn.close();
     }
 
-    public static void createTable(Connection conn) throws SQLException{
+    /*public static void createTable(Connection conn) throws SQLException{
         String table= "CREATE TABLE product(idProduct INT, name VARCHAR(500), value float)";
         conn.prepareStatement(table).execute();
         conn.commit();
-    }
+    }*/
 }
       /*  DAOFactory f1 = DAOFactory.getDAOFactory(DAOFactory.MYSQL_JDBC);
         ClientDAO c1 = f1.getClientDAO();
