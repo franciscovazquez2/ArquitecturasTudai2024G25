@@ -2,6 +2,7 @@ package Daos.MYSQLDaos;
 
 import Daos.Interfaces.ClientDAO;
 import Entity.Client;
+import Entity.Product;
 import Factory.ConnectionMYQSL;
 
 import java.sql.*;
@@ -14,7 +15,7 @@ public class MYSQLClientDAO implements ClientDAO {
     private final Connection conn;
 
     private MYSQLClientDAO() throws SQLException {
-        this.conn= ConnectionMYQSL.getConnection();
+        this.conn = ConnectionMYQSL.getConnection();
     }
 
     public static MYSQLClientDAO getInstance() throws SQLException {
@@ -23,64 +24,83 @@ public class MYSQLClientDAO implements ClientDAO {
         }
         return instance;
     }
+
     @Override
     public int insert(Client c) throws SQLException {
-        String insert = "INSERT INTO client(name, email) VALUES (?,?)";
-        PreparedStatement ps = conn.prepareStatement(insert);
-        ps.setString(1, c.getName());
-        ps.setString(2, c.getEmail());
-        int value = ps.executeUpdate();
-        ps.close();
-        conn.commit();
-        return value;
-    }
-
-    @Override
-    public boolean deleteCustomer(int id) throws SQLException {
-        String rv = "DELETE FROM persona WHERE id = ?";
-        PreparedStatement ps = conn.prepareStatement(rv);
-        ps.setInt(1, id);
-        boolean value = ps.execute();
-        ps.close();
-        conn.commit();
-        return value;
-    }
-
-    @Override
-    public List findCustomer(int id) throws SQLException {
-        List<Client> listClient = new ArrayList<>();
-        String select = "SELECT * FROM persona WHERE id = ?";
-        PreparedStatement ps = conn.prepareStatement(select);
-        ps.setInt(1,id);
-        ResultSet rs = ps.executeQuery();
-
-        while(rs.next()){
-            Client c1 = new Client(rs.getInt(1),rs.getString(2),rs.getString(3));
-            listClient.add(c1);
+        try {
+            String insert = "INSERT INTO client(name, email) VALUES (?,?)";
+            PreparedStatement ps = conn.prepareStatement(insert);
+            ps.setString(1, c.getName());
+            ps.setString(2, c.getEmail());
+            int value = ps.executeUpdate();
+            ps.close();
+            conn.commit();
+            return value;
+        } catch (SQLException e) {
+            System.out.print(e + "Error");
+            return 0;
         }
-        ps.close();
-        conn.close();
-        return listClient;
     }
 
     @Override
-    public boolean updateCustomer() {
+    public boolean delete(int id) throws SQLException {
+        int rowsAffected = 0;
+        try {
+            String rv = "DELETE FROM persona WHERE id = ?";
+            PreparedStatement ps = conn.prepareStatement(rv);
+            ps.setInt(1, id);
+            rowsAffected = ps.executeUpdate();
+            ps.close();
+            conn.commit();
+        } catch (SQLException e) {
+            System.out.println(e + "Error");
+        }
+        //ver que hacer con esto.. si lo necesitan o no
+        if (rowsAffected > 0) {
+            System.out.println("registro id: " + id + " eliminado");
+        } else {
+            System.out.print("No existe registro id: " + id);
+        }
+        return rowsAffected > 0;
+    }
+
+    @Override
+    public Client select(int id) throws SQLException {
+        Client client = null;
+        try {
+            String select = "SELECT * FROM client WHERE idClient=?";
+            PreparedStatement ps = conn.prepareStatement(select);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            client.setIdClient(rs.getInt(1));
+            client.setName(rs.getString(2));
+            client.setEmail(rs.getString(3));
+            conn.commit();
+        } catch (SQLException e) {
+            System.out.println(e + "Error");
+        }
+        return client;
+    }
+
+    @Override
+    public boolean update() {
         return false;
     }
 
     @Override
-    public List selectCustomersRS() throws SQLException {
-        List<Client> listClient = new ArrayList<>();
-        String select = "SELECT * FROM persona";
-        PreparedStatement ps = conn.prepareStatement(select);
-        ResultSet rs = ps.executeQuery();
-
-        while(rs.next()){
-            Client c1 = new Client(rs.getInt(1),rs.getString(2),rs.getString(3));
-            listClient.add(c1);
+    public List<Client> selectAll() throws SQLException {
+        List<Client> clients = new ArrayList<>();
+        try {
+            String select = "SELECT * FROM client";
+            PreparedStatement ps = conn.prepareStatement(select);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                clients.add(new Client(rs.getInt(1), rs.getString(2), rs.getString(3)));
+            }
+            conn.commit();
+        } catch (SQLException e) {
+            System.out.println(e + "Error");
         }
-        ps.close();
-        conn.close();
-        return listClient;
+        return clients;
     }
 }

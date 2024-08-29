@@ -13,5 +13,5 @@ public interface ProductDAO {
 
     boolean update() throws SQLException;
 
-    Product select(Product p) throws SQLException;
+    Product select(int id) throws SQLException;
 }

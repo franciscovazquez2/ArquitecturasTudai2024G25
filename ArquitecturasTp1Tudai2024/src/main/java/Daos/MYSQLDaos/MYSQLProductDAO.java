@@ -31,11 +31,10 @@ public class MYSQLProductDAO implements ProductDAO {
     @Override
     public void insert(Product p) throws SQLException {
         try {
-            String sql = "INSERT INTO product(idProduct,name,valor)VALUES(?,?,?)";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1, p.getIdProduct());
-            ps.setString(2, p.getName());
-            ps.setFloat(3, p.getValue());
+            String insert = "INSERT INTO product(name,valor)VALUES(,?,?)";
+            PreparedStatement ps = conn.prepareStatement(insert);
+            ps.setString(1, p.getName());
+            ps.setFloat(2, p.getValue());
             ps.executeUpdate();
             conn.commit();
         }
@@ -52,7 +51,7 @@ public class MYSQLProductDAO implements ProductDAO {
             PreparedStatement ps = conn.prepareStatement(rv);
             ps.setInt(1, id);
             rowsAffected = ps.executeUpdate();
-            ps.close();
+            ps.close();//ver que pasa aca..
             conn.commit();
         }
         catch (SQLException e){
@@ -75,18 +74,13 @@ public class MYSQLProductDAO implements ProductDAO {
             PreparedStatement ps = conn.prepareStatement(select);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-                int idProduct = rs.getInt(1);
-                String name = rs.getString(2);
-                float valor = rs.getFloat(3);
-                Product p = new Product(idProduct,name,valor);
-                products.add(p);
+                products.add(new Product(rs.getInt(1),rs.getString(2),rs.getFloat(3)));
             }
+            conn.commit();
         }
         catch (SQLException e){
             System.out.println(e+"Error");
         }
-
-
         return products;
     }
 
@@ -96,7 +90,21 @@ public class MYSQLProductDAO implements ProductDAO {
     }
 
     @Override
-    public Product select(Product p) throws SQLException {
-        return null;
+    public Product select(int id) throws SQLException {
+        Product product = null;
+        try{
+            String select = "SELECT * FROM product WHERE idProduct=?";
+            PreparedStatement ps = conn.prepareStatement(select);
+            ps.setInt(1,id);
+            ResultSet rs = ps.executeQuery();
+            product.setIdProduct(rs.getInt(1));
+            product.setName(rs.getString(2));
+            product.setValue(rs.getFloat(3));
+            conn.commit();
+        }
+        catch (SQLException e){
+            System.out.println(e+"Error");
+        }
+        return product;
     }
 }

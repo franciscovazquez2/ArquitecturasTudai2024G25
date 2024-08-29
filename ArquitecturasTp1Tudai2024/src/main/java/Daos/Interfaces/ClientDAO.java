@@ -9,11 +9,12 @@ public interface ClientDAO {
 
     int insert(Client c) throws SQLException;
 
-    boolean deleteCustomer(int id) throws SQLException;
+    boolean delete(int id) throws SQLException;
 
-    List findCustomer(int id) throws SQLException;
+    public List<Client> selectAll() throws SQLException;
 
-    public boolean updateCustomer() throws SQLException;
+    public boolean update() throws SQLException;
 
-    public List selectCustomersRS() throws SQLException;
+    Client select(int id) throws SQLException;
+
 }
