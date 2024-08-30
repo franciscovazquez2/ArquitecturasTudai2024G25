@@ -23,7 +23,7 @@ public class App {
     public static void main(String[] args) throws SQLException {
 
         Connection conn = ConnectionMYQSL.getConnection();
-        /* creacion de esquema completo*
+        /*creacion de esquema completo*
         SchemaMYSQL schemaMYSQL = new SchemaMYSQL();
         schemaMYSQL.createSchema();
         */
