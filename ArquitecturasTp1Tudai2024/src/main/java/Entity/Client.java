@@ -11,9 +11,9 @@ public class Client {
     }
 
     public Client(int idClient,String name, String email){
+        this.idClient=idClient;
         this.name=name;
         this.email=email;
-        this.idClient=idClient;
     }
 
     public int getIdClient() {
@@ -42,10 +42,11 @@ public class Client {
 
     @Override
     public String toString() {
-        return "Client{" +
+
+
+        return  "Client{" +
                 "idClient=" + idClient +
                 ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                '}';
+                ", email='" + email + "}";
     }
 }

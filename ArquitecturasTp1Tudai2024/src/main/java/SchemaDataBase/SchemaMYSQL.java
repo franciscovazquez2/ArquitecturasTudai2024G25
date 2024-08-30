@@ -37,7 +37,7 @@ public class SchemaMYSQL {
         String tableProduct="CREATE TABLE product(" +
                             "idProduct INT PRIMARY KEY AUTO_INCREMENT," +
                             "name VARCHAR(45)," +
-                            "valor float" +
+                            "price float" +
                             ");";
         conn.prepareStatement(tableProduct).execute();
         conn.commit();
@@ -52,23 +52,5 @@ public class SchemaMYSQL {
                                     ");";
         conn.prepareStatement(tableFacture_Product).execute();
         conn.commit();
-        /*
-        String tableClient= "CREATE TABLE client(id INT, name VARCHAR(500), email VARCHAR(250), PRIMARY KEY(id))";
-        conn.prepareStatement(schemaSQL).execute();
-        conn.commit();
-
-        String tableFacture= "CREATE TABLE facture(idFacture INT, idClient INT, PRIMARY KEY(idFacture))";
-        conn.prepareStatement(tableFacture).execute();
-        conn.commit();
-
-        String tableProduct= "CREATE TABLE product(idProduct INT, name VARCHAR(45), valor float, PRIMARY KEY(idProduct))";
-        conn.prepareStatement(tableProduct).execute();
-        conn.commit();
-
-        String tableFacture_Product= "CREATE TABLE facture_product(idProduct INT, idFacture INT, cantidad INT)";
-        conn.prepareStatement(tableFacture_Product).execute();
-        conn.commit();
-        */
     }
-
 }

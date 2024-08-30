@@ -2,6 +2,7 @@ package Daos.MYSQLDaos;
 
 import Daos.Interfaces.Facture_ProductDAO;
 import Entity.Facture_Product;
+import Entity.Product;
 import Factory.ConnectionMYQSL;
 
 import java.sql.Connection;
@@ -132,5 +133,15 @@ public class MYSQLFacture_ProductDAO implements Facture_ProductDAO {
             System.out.println(e + "Error!");
         }
         return fp;
+    }
+
+    //metodo para arreglar e implementarServicio...
+    public List<Product>selectProductMaxRecaudado() {
+        List<Product>productosMaxRecaudados = new ArrayList<Product>();
+        String sql = "select p.idProduct, sum(p.cantidad) total, pr.price precio, (sum(p.cantidad) * price) recaudacion" +
+                     " from facture_product p" +
+                     "join product pr on (p.idProduct = pr.idProduct)" +
+                     "group by p.idProduct order by recaudacion desc;";
+        return productosMaxRecaudados;
     }
 }
