@@ -42,7 +42,9 @@ public class CSVreader {
                                 // Usamos la coma como separador
                                 String[] datos = line.split(cvsSplitBy);
                                 Product p = new Product(Integer.parseInt(datos[0]), datos[1], Float.parseFloat(datos[2]));
+                                //System.out.print(datos[2]);
                                 products.add(p);
+
                         }
                 } catch (IOException e) {
                         e.printStackTrace();

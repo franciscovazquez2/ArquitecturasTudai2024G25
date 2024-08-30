@@ -3,15 +3,15 @@ package Entity;
 public class Product {
     private int idProduct;
     private String name;
-    private float value;
+    private float price;
 
-    public Product(String name, float value) {
+    public Product(String name, float price) {
         this.name = name;
-        this.value = value;
+        this.price = price;
     }
-    public Product(int idProduct,String name, float value) {
+    public Product(int idProduct,String name, float price) {
         this.name = name;
-        this.value = value;
+        this.price = price;
         this.idProduct=idProduct;
     }
 
@@ -32,10 +32,10 @@ public class Product {
     }
 
     public float getValue() {
-        return value;
+        return price;
     }
 
-    public void setValue(float value) {
-        this.value = value;
+    public void setValue(float price) {
+        this.price = price;
     }
 }

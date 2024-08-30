@@ -31,7 +31,7 @@ public class MYSQLProductDAO implements ProductDAO {
     @Override
     public void insert(Product p) throws SQLException {
         try {
-            String insert = "INSERT INTO product(name,value)VALUES(?,?)";
+            String insert = "INSERT INTO product(name,price)VALUES(?,?)";
             PreparedStatement ps = conn.prepareStatement(insert);
             ps.setString(1, p.getName());
             ps.setFloat(2, p.getValue());
