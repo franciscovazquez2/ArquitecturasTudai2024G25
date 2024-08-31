@@ -8,8 +8,8 @@ public class ClientMaxFacture extends Client {
             super(c.getIdClient(),c.getName(),c.getEmail());
             this.totalFacturado=totalFacturado;
     }
-    //devolver copia
-    public ClientMaxFacture getClientMaxFacture() {
+
+    public ClientMaxFacture copy() {
         return new ClientMaxFacture(getClient(),this.totalFacturado);
     }
 

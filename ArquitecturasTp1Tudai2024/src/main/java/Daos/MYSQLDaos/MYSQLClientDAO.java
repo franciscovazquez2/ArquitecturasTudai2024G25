@@ -26,10 +26,10 @@ public class MYSQLClientDAO implements ClientDAO {
     }
 
     @Override
-    public int insert(Client c) throws SQLException {
+    public int insert (Client c) throws SQLException {
         try {
-            String insert = "INSERT INTO client(name, email) VALUES (?,?)";
-            PreparedStatement ps = conn.prepareStatement(insert);
+            String sql = "INSERT INTO client(name, email) VALUES (?,?)";
+            PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, c.getName());
             ps.setString(2, c.getEmail());
             int value = ps.executeUpdate();
@@ -43,11 +43,11 @@ public class MYSQLClientDAO implements ClientDAO {
     }
 
     @Override
-    public boolean delete(int id) throws SQLException {
+    public boolean delete (int id) throws SQLException {
         int rowsAffected = 0;
         try {
-            String rv = "DELETE FROM persona WHERE id = ?";
-            PreparedStatement ps = conn.prepareStatement(rv);
+            String sql = "DELETE FROM persona WHERE id = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, id);
             rowsAffected = ps.executeUpdate();
             ps.close();
@@ -65,11 +65,11 @@ public class MYSQLClientDAO implements ClientDAO {
     }
 
     @Override
-    public Client select(int id) throws SQLException {
+    public Client select (int id) throws SQLException {
         Client client = null;
         try {
-            String select = "SELECT * FROM client WHERE idClient=?";
-            PreparedStatement ps = conn.prepareStatement(select);
+            String sql = "SELECT * FROM client WHERE idClient=?";
+            PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             client.setIdClient(rs.getInt(1));
@@ -83,16 +83,16 @@ public class MYSQLClientDAO implements ClientDAO {
     }
 
     @Override
-    public boolean update() {
+    public boolean update () {
         return false;
     }
 
     @Override
-    public List<Client> selectAll() throws SQLException {
+    public List<Client> selectAll () throws SQLException {
         List<Client> clients = new ArrayList<>();
         try {
-            String select = "SELECT * FROM client";
-            PreparedStatement ps = conn.prepareStatement(select);
+            String sql = "SELECT * FROM client";
+            PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 clients.add(new Client(rs.getInt(1), rs.getString(2), rs.getString(3)));
@@ -104,7 +104,7 @@ public class MYSQLClientDAO implements ClientDAO {
         return clients;
     }
 
-    public List<ClientMaxFacture> selectMaxFacture() throws SQLException{
+    public List<ClientMaxFacture> selectMaxFacture () throws SQLException{
         List<ClientMaxFacture> maxFacturesClients = new ArrayList<>();
         try{
             String sql = "select c.id,c.name,c.email, sum(fr.cantidad*p.price)totalfacturado from facture_product fr\n" +

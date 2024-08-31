@@ -30,10 +30,10 @@ public class MYSQLProductDAO implements ProductDAO {
     }
 
     @Override
-    public void insert(Product p) throws SQLException {
+    public void insert (Product p) throws SQLException {
         try {
-            String insert = "INSERT INTO product(name,price)VALUES(?,?)";
-            PreparedStatement ps = conn.prepareStatement(insert);
+            String sql = "INSERT INTO product(name,price)VALUES(?,?)";
+            PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, p.getName());
             ps.setFloat(2, p.getValue());
             ps.executeUpdate();
@@ -45,11 +45,11 @@ public class MYSQLProductDAO implements ProductDAO {
     }
 
     @Override
-    public boolean delete(int id) throws SQLException {
-        int rowsAffected=0;
+    public boolean delete (int id) throws SQLException {
+        int rowsAffected = 0;
         try {
-            String rv = "DELETE FROM product WHERE idProduct = ?";
-            PreparedStatement ps = conn.prepareStatement(rv);
+            String sql = "DELETE FROM product WHERE idProduct = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, id);
             rowsAffected = ps.executeUpdate();
             ps.close();//ver que pasa aca..
@@ -59,20 +59,20 @@ public class MYSQLProductDAO implements ProductDAO {
             System.out.println(e + "Error");
         }
         //ver que hacer con esto.. si lo necesitan o no
-        if(rowsAffected>0){
+        if(rowsAffected > 0){
             System.out.println("registro id: "+id+ " eliminado");
         }else{
             System.out.print("No existe registro id: "+id);
         }
-        return rowsAffected>0;
+        return rowsAffected > 0;
     }
 
     @Override
-    public List<Product> selectAll() throws SQLException {
-            List<Product>products = new ArrayList<>();
+    public List<Product> selectAll () throws SQLException {
+            List<Product> products = new ArrayList<>();
         try{
-            String select = "SELECT * FROM product";
-            PreparedStatement ps = conn.prepareStatement(select);
+            String sql = "SELECT * FROM product";
+            PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 products.add(new Product(rs.getInt(1),rs.getString(2),rs.getFloat(3)));
@@ -86,21 +86,21 @@ public class MYSQLProductDAO implements ProductDAO {
     }
 
     @Override
-    public boolean update() throws SQLException {
+    public boolean update () throws SQLException {
         return false;
     }
 
     @Override
-    public Product select(int id) throws SQLException {
+    public Product select (int id) throws SQLException {
         Product product = null;
         try{
-            String select = "SELECT * FROM product WHERE idProduct=?";
-            PreparedStatement ps = conn.prepareStatement(select);
+            String sql = "SELECT * FROM product WHERE idProduct=?";
+            PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1,id);
             ResultSet rs = ps.executeQuery();
             product.setIdProduct(rs.getInt(1));
             product.setName(rs.getString(2));
-            product.setValue(rs.getFloat(3));
+            product.setPrice(rs.getFloat(3));
             conn.commit();
         }
         catch (SQLException e){
@@ -109,13 +109,13 @@ public class MYSQLProductDAO implements ProductDAO {
         return product;
     }
 
-    public List<ProductColleted>selectMostProductColleted() throws SQLException{
+    public List<ProductColleted> selectMostProductColleted () throws SQLException{
         List<ProductColleted> productColleted = new ArrayList<ProductColleted>();
         try {
             String sql = "select p.idProduct, pr.name, pr.price price, sum(p.cantidad) cantTotal, (sum(p.cantidad) * price) recaudacion" +
-                    " from facture_product p" +
-                    "join product pr on (p.idProduct = pr.idProduct)" +
-                    "group by p.idProduct order by recaudacion desc;";
+                         "from facture_product p" +
+                         "join product pr on (p.idProduct = pr.idProduct)" +
+                         "group by p.idProduct order by recaudacion desc;";
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()){

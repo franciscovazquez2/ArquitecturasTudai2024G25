@@ -20,15 +20,25 @@ public class Facture {
         return idFacture;
     }
 
-    public void setIdFacture(int idFacture) {
-        this.idFacture = idFacture;
-    }
-
     public int getIdClient() {
         return idClient;
     }
 
+    public void setIdFacture(int idFacture) {
+        this.idFacture = idFacture;
+    }
+
     public void setIdClient(int idClient) {
         this.idClient = idClient;
+    }
+
+    public Facture copy() {return new Facture(this.getIdFacture(),this.getIdClient());}
+
+    @Override
+    public String toString() {
+        return "Facture{" +
+                "idFacture=" + idFacture +
+                ", idClient=" + idClient +
+                '}';
     }
 }

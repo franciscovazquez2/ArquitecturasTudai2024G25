@@ -18,7 +18,16 @@ public class ProductColleted extends Product{
         return colleted;
     }
 
-    public ProductColleted getProductColleted(){
-        return new ProductColleted(super.getProduct(),this.getContTotal(), this.getColleted());
+    @Override
+    public ProductColleted copy(){
+        return new ProductColleted(super.copy(),this.getContTotal(), this.getColleted());
+    }
+
+    @Override
+    public String toString() {
+        return  super.toString() +
+                "contTotal=" + contTotal +
+                ", colleted=" + colleted +
+                '}';
     }
 }

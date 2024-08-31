@@ -91,7 +91,7 @@ public class MYSQLFacture_ProductDAO implements Facture_ProductDAO {
         }else {
             System.out.println("No existe registro con idFactura "+ id_f + " y idProducto "+id_p);
         }
-        return false;
+        return arowsAffected > 0;
     }
 
     @Override

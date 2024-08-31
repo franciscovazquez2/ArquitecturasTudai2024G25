@@ -30,7 +30,7 @@ public class MYSQLFactureDAO implements FactureDAO {
 
 
     @Override
-    public void insert(Facture f) throws SQLException {
+    public void insert (Facture f) throws SQLException {
         try{
             String sql = "INSERT INTO facture(idClient)VALUES(?)";
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -44,11 +44,11 @@ public class MYSQLFactureDAO implements FactureDAO {
     }
 
     @Override
-    public boolean delete(int id) throws SQLException {
-        int rowsAffected=0;
+    public boolean delete (int id) throws SQLException {
+        int rowsAffected = 0;
         try {
-            String rv = "DELETE FROM facture WHERE idFacture = ?";
-            PreparedStatement ps = conn.prepareStatement(rv);
+            String sql = "DELETE FROM facture WHERE idFacture = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, id);
             rowsAffected = ps.executeUpdate();
             ps.close();
@@ -58,20 +58,20 @@ public class MYSQLFactureDAO implements FactureDAO {
             System.out.println(e + "Error");
         }
         //ver que hacer con esto.. si lo necesitan o no
-        if(rowsAffected>0){
+        if(rowsAffected > 0){
             System.out.println("registro id: "+id+ " eliminado");
         }else{
             System.out.print("No existe registro id: "+id);
         }
-        return rowsAffected>0;
+        return rowsAffected > 0;
     }
 
     @Override
-    public List<Facture> selectAll() throws SQLException {
-        List<Facture>factures = new ArrayList<>();
+    public List<Facture> selectAll () throws SQLException {
+        List<Facture> factures = new ArrayList<>();
         try{
-            String select = "SELECT * FROM facture;";
-            PreparedStatement ps = conn.prepareStatement(select);
+            String sql = "SELECT * FROM facture;";
+            PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 factures.add(new Facture(rs.getInt(1),rs.getInt(2)));
@@ -85,16 +85,16 @@ public class MYSQLFactureDAO implements FactureDAO {
     }
 
     @Override
-    public boolean update() throws SQLException {
+    public boolean update () throws SQLException {
         return false;
     }
 
     @Override
-    public Facture select(int id) throws SQLException {
+    public Facture select (int id) throws SQLException {
         Facture facture = null;
         try{
-            String select = "SELECT * FROM facture WHERE idFacture=?";
-            PreparedStatement ps = conn.prepareStatement(select);
+            String sql = "SELECT * FROM facture WHERE idFacture=?";
+            PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1,id);
             ResultSet rs = ps.executeQuery();
             facture.setIdFacture(rs.getInt(1));

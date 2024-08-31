@@ -17,10 +17,26 @@ public class Facture_Product {
 
     public int getCantidad() {return cantidad;}
 
-    public void setIdFacture(int idFacture) {this.idFacture = idFacture;}
+    public void setIdFacture(int idFacture) {
+        this.idFacture = idFacture;
+    }
 
-    public void setIdProduct(int idProduct) {this.idProduct = idProduct;}
+    public void setIdProduct(int idProduct) {
+        this.idProduct = idProduct;
+    }
 
-    public void setCantidad(int cantidad) {this.cantidad = cantidad;}
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
 
+    public Facture_Product copy() {return new Facture_Product(this.getIdFacture(),this.getIdProduct(),this.getCantidad());}
+
+    @Override
+    public String toString() {
+        return "Facture_Product{" +
+                "idFacture=" + idFacture +
+                ", idProduct=" + idProduct +
+                ", cantidad=" + cantidad +
+                '}';
+    }
 }

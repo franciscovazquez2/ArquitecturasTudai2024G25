@@ -16,29 +16,32 @@ public class Client {
         this.email=email;
     }
 
-    public int getIdClient() {
-        return idClient;
-    }
-
     public void setIdClient(int idClient) {
         this.idClient = idClient;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getIdClient() {
+        return idClient;
+    }
+
+
+    public String getName() {
+        return name;
+    }
+
+
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
     public Client getClient(){return new Client(this.idClient,this.name,this.email);}
 
