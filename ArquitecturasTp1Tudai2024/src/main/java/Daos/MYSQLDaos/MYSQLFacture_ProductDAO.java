@@ -135,13 +135,4 @@ public class MYSQLFacture_ProductDAO implements Facture_ProductDAO {
         return fp;
     }
 
-    //metodo para arreglar e implementarServicio...
-    public List<Product>selectProductMaxRecaudado() {
-        List<Product>productosMaxRecaudados = new ArrayList<Product>();
-        String sql = "select p.idProduct, sum(p.cantidad) total, pr.price precio, (sum(p.cantidad) * price) recaudacion" +
-                     " from facture_product p" +
-                     "join product pr on (p.idProduct = pr.idProduct)" +
-                     "group by p.idProduct order by recaudacion desc;";
-        return productosMaxRecaudados;
-    }
 }

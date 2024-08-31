@@ -3,7 +3,6 @@ package Daos.MYSQLDaos;
 import Daos.Interfaces.ClientDAO;
 import Entity.Client;
 import Entity.ClientMaxFacture;
-import Entity.Product;
 import Factory.ConnectionMYQSL;
 
 import java.sql.*;
@@ -105,8 +104,8 @@ public class MYSQLClientDAO implements ClientDAO {
         return clients;
     }
 
-    public List<ClientMaxFacture>selectMasFacturado(){
-        List<ClientMaxFacture> clientesMasFacturados = new ArrayList<>();
+    public List<ClientMaxFacture> selectMaxFacture() throws SQLException{
+        List<ClientMaxFacture> maxFacturesClients = new ArrayList<>();
         try{
             String sql = "select c.id,c.name,c.email, sum(fr.cantidad*p.price)totalfacturado from facture_product fr\n" +
                          "join product p on (fr.idProduct = p.idProduct)\n" +
@@ -116,9 +115,7 @@ public class MYSQLClientDAO implements ClientDAO {
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-                Client c = new Client(rs.getInt(1),rs.getString(2),rs.getString(3));
-                ClientMaxFacture cmf = new ClientMaxFacture(c,rs.getInt(4));
-                clientesMasFacturados.add(cmf);
+                maxFacturesClients.add(new ClientMaxFacture(new Client(rs.getInt(1),rs.getString(2),rs.getString(3)), rs.getInt(4)));
             }
             ps.close();
             conn.commit();
@@ -126,6 +123,6 @@ public class MYSQLClientDAO implements ClientDAO {
         catch(SQLException e){
             System.out.print(e+"Error");
         }
-        return clientesMasFacturados;
+        return maxFacturesClients;
     }
 }

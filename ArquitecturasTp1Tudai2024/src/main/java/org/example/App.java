@@ -1,18 +1,14 @@
 package org.example;
 
-import CSVfiles.CSVreader;
 import Daos.Interfaces.ClientDAO;
 import Daos.Interfaces.FactureDAO;
 import Daos.Interfaces.Facture_ProductDAO;
 import Daos.Interfaces.ProductDAO;
 import Daos.MYSQLDaos.MYSQLClientDAO;
-import Daos.MYSQLDaos.MYSQLProductDAO;
 import Entity.*;
 import Factory.ConnectionMYQSL;
 import Factory.DAOFactory;
-import SchemaDataBase.SchemaMYSQL;
 
-import java.lang.reflect.InvocationTargetException;
 import java.sql.*;
 import java.util.List;
 
@@ -55,7 +51,7 @@ public class App {
                 facture_productDAO.insert(fp);
             }*/
 
-            List<ClientMaxFacture>clientesMasFacturados = MYSQLClientDAO.getInstance().selectMasFacturado();
+            List<ClientMaxFacture>clientesMasFacturados = MYSQLClientDAO.getInstance().selectMaxFacture();
 
             for (ClientMaxFacture c : clientesMasFacturados){
                 System.out.println(c.toString());

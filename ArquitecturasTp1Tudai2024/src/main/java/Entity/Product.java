@@ -15,6 +15,8 @@ public class Product {
         this.idProduct=idProduct;
     }
 
+    public Product getProduct(){return new Product(this.idProduct,this.name,this.price);}
+
     public int getIdProduct() {
         return idProduct;
     }

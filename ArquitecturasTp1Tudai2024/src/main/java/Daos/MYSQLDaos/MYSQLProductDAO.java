@@ -2,6 +2,7 @@ package Daos.MYSQLDaos;
 
 import Daos.Interfaces.ProductDAO;
 import Entity.Product;
+import Entity.ProductColleted;
 import Factory.ConnectionMYQSL;
 import com.mysql.cj.MysqlConnection;
 
@@ -106,5 +107,24 @@ public class MYSQLProductDAO implements ProductDAO {
             System.out.println(e+"Error");
         }
         return product;
+    }
+
+    public List<ProductColleted>selectMostProductColleted() throws SQLException{
+        List<ProductColleted> productColleted = new ArrayList<ProductColleted>();
+        try {
+            String sql = "select p.idProduct, pr.name, pr.price price, sum(p.cantidad) cantTotal, (sum(p.cantidad) * price) recaudacion" +
+                    " from facture_product p" +
+                    "join product pr on (p.idProduct = pr.idProduct)" +
+                    "group by p.idProduct order by recaudacion desc;";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                productColleted.add(new ProductColleted(new Product(rs.getInt(1),rs.getString(2),rs.getInt(3)),rs.getInt(4),rs.getInt(5)));
+            }
+            conn.commit();
+        }catch (SQLException e){
+            System.out.println(e + "Error");
+        }
+        return productColleted;
     }
 }
