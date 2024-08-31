@@ -40,6 +40,8 @@ public class Client {
         this.email = email;
     }
 
+    public Client getClient(){return new Client(this.idClient,this.name,this.email);}
+
     @Override
     public String toString() {
 

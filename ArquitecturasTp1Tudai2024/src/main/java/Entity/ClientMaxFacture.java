@@ -9,6 +9,10 @@ public class ClientMaxFacture extends Client {
             this.totalFacturado=totalFacturado;
     }
     //devolver copia
+    public ClientMaxFacture getClientMaxFacture() {
+        return new ClientMaxFacture(getClient(),this.totalFacturado);
+    }
+
     public int getTotalFacturado() {
         return totalFacturado;
     }
