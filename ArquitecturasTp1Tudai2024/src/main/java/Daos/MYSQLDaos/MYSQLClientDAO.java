@@ -1,5 +1,6 @@
 package Daos.MYSQLDaos;
 
+import DTO.ClientMaxFactureDTO;
 import Daos.Interfaces.ClientDAO;
 import Entity.Client;
 import Entity.ClientMaxFacture;
@@ -104,8 +105,8 @@ public class MYSQLClientDAO implements ClientDAO {
         return clients;
     }
 
-    public List<ClientMaxFacture> selectMaxFacture () throws SQLException{
-        List<ClientMaxFacture> maxFacturesClients = new ArrayList<>();
+    public List<ClientMaxFactureDTO> selectMaxFacture () throws SQLException{
+        List<ClientMaxFactureDTO> maxFacturesClients = new ArrayList<>();
         try{
             String sql = "select c.id,c.name,c.email, sum(fr.cantidad*p.price)totalfacturado from facture_product fr\n" +
                          "join product p on (fr.idProduct = p.idProduct)\n" +
@@ -115,7 +116,8 @@ public class MYSQLClientDAO implements ClientDAO {
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-                maxFacturesClients.add(new ClientMaxFacture(new Client(rs.getInt(1),rs.getString(2),rs.getString(3)), rs.getInt(4)));
+                maxFacturesClients.add(new ClientMaxFactureDTO(rs.getInt(1),rs.getString(2),
+                                                               rs.getString(3), rs.getInt(4)));
             }
             ps.close();
             conn.commit();

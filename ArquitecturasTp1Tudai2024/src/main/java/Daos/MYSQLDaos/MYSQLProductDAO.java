@@ -1,5 +1,6 @@
 package Daos.MYSQLDaos;
 
+import DTO.ProductColletedDTO;
 import Daos.Interfaces.ProductDAO;
 import Entity.Product;
 import Entity.ProductColleted;
@@ -109,17 +110,19 @@ public class MYSQLProductDAO implements ProductDAO {
         return product;
     }
 
-    public List<ProductColleted> selectMostProductColleted () throws SQLException{
-        List<ProductColleted> productColleted = new ArrayList<ProductColleted>();
+    public List<ProductColletedDTO> selectMostProductColleted () throws SQLException{
+        List<ProductColletedDTO> productColleted = new ArrayList<ProductColletedDTO>();
         try {
-            String sql = "select p.idProduct, pr.name, pr.price price, sum(p.cantidad) cantTotal, (sum(p.cantidad) * price) recaudacion" +
-                         "from facture_product p" +
-                         "join product pr on (p.idProduct = pr.idProduct)" +
-                         "group by p.idProduct order by recaudacion desc;";
+            String sql = "select p.idProduct, pr.name, pr.price price, sum(p.cantidad) cantTotal, (sum(p.cantidad) * price) recaudacion " +
+                         "from facture_product p " +
+                         "join product pr on (p.idProduct = pr.idProduct) " +
+                         "group by p.idProduct order by recaudacion desc ";
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()){
-                productColleted.add(new ProductColleted(new Product(rs.getInt(1),rs.getString(2),rs.getInt(3)),rs.getInt(4),rs.getInt(5)));
+                productColleted.add(new ProductColletedDTO(rs.getInt(1),rs.getString(2),
+                                                           rs.getInt(3),rs.getInt(4),
+                                                           rs.getFloat(5)));
             }
             conn.commit();
         }catch (SQLException e){
