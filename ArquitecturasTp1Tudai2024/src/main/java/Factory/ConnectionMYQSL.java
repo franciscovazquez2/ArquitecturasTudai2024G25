@@ -18,4 +18,6 @@ public class ConnectionMYQSL {
         }
         return conn;
     }
+
+    public static void closeConnection() throws SQLException { conn.close();}
 }

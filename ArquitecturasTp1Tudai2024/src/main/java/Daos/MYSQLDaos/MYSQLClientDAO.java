@@ -27,29 +27,27 @@ public class MYSQLClientDAO implements ClientDAO {
     }
 
     @Override
-    public int insert (Client c) throws SQLException {
+    public void insert (Client c) throws SQLException {
         try {
             String sql = "INSERT INTO client(name, email) VALUES (?,?)";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, c.getName());
             ps.setString(2, c.getEmail());
-            int value = ps.executeUpdate();
+            ps.executeUpdate();
             ps.close();
             conn.commit();
-            return value;
         } catch (SQLException e) {
             System.out.print(e + "Error");
-            return 0;
         }
     }
 
     @Override
-    public boolean delete (int id) throws SQLException {
+    public boolean delete (Integer id) throws SQLException {
         int rowsAffected = 0;
         try {
             String sql = "DELETE FROM persona WHERE id = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1, id);
+            ps.setInt(1, id.intValue());
             rowsAffected = ps.executeUpdate();
             ps.close();
             conn.commit();
@@ -66,12 +64,12 @@ public class MYSQLClientDAO implements ClientDAO {
     }
 
     @Override
-    public Client select (int id) throws SQLException {
+    public Client select (Integer id) throws SQLException {
         Client client = null;
         try {
             String sql = "SELECT * FROM client WHERE idClient=?";
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1, id);
+            ps.setInt(1, id.intValue());
             ResultSet rs = ps.executeQuery();
             client.setIdClient(rs.getInt(1));
             client.setName(rs.getString(2));

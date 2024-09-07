@@ -44,12 +44,12 @@ public class MYSQLFactureDAO implements FactureDAO {
     }
 
     @Override
-    public boolean delete (int id) throws SQLException {
+    public boolean delete (Integer id) throws SQLException {
         int rowsAffected = 0;
         try {
             String sql = "DELETE FROM facture WHERE idFacture = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1, id);
+            ps.setInt(1, id.intValue());
             rowsAffected = ps.executeUpdate();
             ps.close();
             conn.commit();
@@ -90,12 +90,12 @@ public class MYSQLFactureDAO implements FactureDAO {
     }
 
     @Override
-    public Facture select (int id) throws SQLException {
+    public Facture select (Integer id) throws SQLException {
         Facture facture = null;
         try{
             String sql = "SELECT * FROM facture WHERE idFacture=?";
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1,id);
+            ps.setInt(1,id.intValue());
             ResultSet rs = ps.executeQuery();
             facture.setIdFacture(rs.getInt(1));
             facture.setIdClient(rs.getInt(2));

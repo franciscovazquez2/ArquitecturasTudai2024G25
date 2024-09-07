@@ -46,14 +46,14 @@ public class MYSQLProductDAO implements ProductDAO {
     }
 
     @Override
-    public boolean delete (int id) throws SQLException {
+    public boolean delete (Integer id) throws SQLException {
         int rowsAffected = 0;
         try {
             String sql = "DELETE FROM product WHERE idProduct = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1, id);
+            ps.setInt(1, id.intValue());
             rowsAffected = ps.executeUpdate();
-            ps.close();//ver que pasa aca..
+            ps.close();
             conn.commit();
         }
         catch (SQLException e){
@@ -92,12 +92,12 @@ public class MYSQLProductDAO implements ProductDAO {
     }
 
     @Override
-    public Product select (int id) throws SQLException {
+    public Product select (Integer id) throws SQLException {
         Product product = null;
         try{
             String sql = "SELECT * FROM product WHERE idProduct=?";
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1,id);
+            ps.setInt(1,id.intValue());
             ResultSet rs = ps.executeQuery();
             product.setIdProduct(rs.getInt(1));
             product.setName(rs.getString(2));
