@@ -45,11 +45,42 @@ Dependiendo la interfaz utilizada, si la conexión al esquema no existe configur
 En consola de consultas SQL utilizada ingresar la sentencia ***USER dbArquiTPG25 database***  para poder utilizar el esquema
 
 ## Ejecución
+
+**Breve explicaciónn**-Este programa por medio de una conexión JDBC nombrada en la *Introducción* con una base de datos, en principio ejecuta un metodo de inicialización que conecta el Driver, se genera la conexión, creación de esquema y carga de datos.
+Por ultimó procede a mostrar por consola dos consultas a la base.
+
 Ejecutar metodo Main, ubicado en *ArquitecturasTP1Tudai2024/App.java*    
     
     La ejecución de esta clase procedera a crear el esquema de entidades en la base y
     completar con datos las mismas.
 
+```java
+        public static void main(String[] args) throws SQLException {
+        
+        ConnectionMYQSL.getConnection();
+
+        InitializeJDBC.createSchema();
+        InitializeJDBC.loadTables();
+             
+            System.out.println("Clientes mas facturados");
+
+            List<ClientMaxFactureDTO>clientesMasFacturados = MYSQLClientDAO.getInstance().selectMaxFacture();
+
+            for (ClientMaxFactureDTO c : clientesMasFacturados){
+                System.out.println(c.toString());
+            }
+
+            System.out.println("Product Collected");
+
+            List<ProductColletedDTO>productCollected = MYSQLProductDAO.getInstance().selectMostProductColleted();
+
+            for (ProductColletedDTO c : productCollected){
+                System.out.println(c.toString());
+            }
+
+        ConnectionMYQSL.closeConnection();
+    }
+```
 
 ## Manejo de erroes de ejecución
 
