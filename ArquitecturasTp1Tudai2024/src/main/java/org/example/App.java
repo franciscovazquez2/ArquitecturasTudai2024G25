@@ -1,19 +1,11 @@
 package org.example;
 
-import CSVfiles.CSVreader;
-import DTO.ClientMaxFactureDTO;
-import DTO.ProductColletedDTO;
-import Daos.Interfaces.ClientDAO;
-import Daos.Interfaces.FactureDAO;
-import Daos.Interfaces.Facture_ProductDAO;
-import Daos.Interfaces.ProductDAO;
-import Daos.MYSQLDaos.MYSQLClientDAO;
-import Daos.MYSQLDaos.MYSQLProductDAO;
-import Entity.*;
-import Factory.ConnectionMYQSL;
-import Factory.DAOFactory;
-import Initialize.InitializeJDBC;
-import SchemaDataBase.SchemaMYSQL;
+import dto.ClientMaxFactureDTO;
+import dto.ProductColletedDTO;
+import dao.MYSQLDaos.MYSQLClientDAO;
+import dao.MYSQLDaos.MYSQLProductDAO;
+import factory.ConnectionMYQSL;
+import initialize.InitializeJDBC;
 
 import java.sql.*;
 import java.util.List;
