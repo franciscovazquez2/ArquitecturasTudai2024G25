@@ -1,5 +1,6 @@
 package dao.MYSQLDaos;
 
+import dao.helper.CompoudKey;
 import dao.Interfaces.Facture_ProductDAO;
 import entity.Facture_Product;
 import factory.ConnectionMYQSL;
@@ -71,13 +72,13 @@ public class MYSQLFacture_ProductDAO implements Facture_ProductDAO {
     }
 
     @Override
-    public boolean delete(int id_f, int id_p) throws SQLException {
+    public boolean delete(CompoudKey ids) throws SQLException {
         int arowsAffected = 0;
         try{
             String sql = "DELETE FROM facture_product WHERE idFacture = ? AND idProduct = ?";
         PreparedStatement ps = conn.prepareStatement(sql);
-        ps.setInt(1, id_f);
-        ps.setInt(2, id_p);
+        ps.setInt(1, ids.getIdFacture());
+        ps.setInt(2, ids.getIdProduct());
         arowsAffected = ps.executeUpdate();
         ps.close();
         conn.commit();
@@ -86,9 +87,9 @@ public class MYSQLFacture_ProductDAO implements Facture_ProductDAO {
             System.out.println(e + "Error!");
         }
         if(arowsAffected > 0) {
-            System.out.println(arowsAffected + "Registro con idFactura "+ id_f + " y idProducto "+id_p+" eliminado.");
+            System.out.println(arowsAffected + "Registro con idFactura "+ ids.getIdFacture() + " y idProducto "+ids.getIdProduct()+" eliminado.");
         }else {
-            System.out.println("No existe registro con idFactura "+ id_f + " y idProducto "+id_p);
+            System.out.println("No existe registro con idFactura "+ ids.getIdFacture() + " y idProducto "+ids.getIdProduct());
         }
         return arowsAffected > 0;
     }
@@ -116,13 +117,13 @@ public class MYSQLFacture_ProductDAO implements Facture_ProductDAO {
     }
 
     @Override
-    public Facture_Product select(int id_f, int id_p) throws SQLException {
+    public Facture_Product select(CompoudKey ids) throws SQLException {
         Facture_Product fp = null;
         try {
             String select = "SELECT * FROM facture_product WHERE idFacture = ? AND idProduct = ?";
             PreparedStatement ps = conn.prepareStatement(select);
-            ps.setInt(1, id_f);
-            ps.setInt(2, id_p);
+            ps.setInt(1, ids.getIdFacture());
+            ps.setInt(2, ids.getIdProduct());
             ResultSet rs = ps.executeQuery();
             fp.setIdProduct(rs.getInt(1));
             fp.setIdFacture(rs.getInt(2));
