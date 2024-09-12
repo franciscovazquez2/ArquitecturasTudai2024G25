@@ -76,31 +76,31 @@ La ejecución de esta clase procedera a crear el esquema de entidades en la base
 completar con datos las mismas.
 
 ```java
-        public static void main(String[] args) throws SQLException {
-        
-        ConnectionMYQSL.getConnection();
+    public static void main(String[] args) throws SQLException {
 
-        InitializeJDBC.createSchema();
-        InitializeJDBC.loadTables();
-             
-            System.out.println("Clientes mas facturados");
+    ConnectionMYQSL.getConnection();
 
-            List<ClientMaxFactureDTO>clientesMasFacturados = MYSQLClientDAO.getInstance().selectMaxFacture();
+    InitializeJDBC.createSchema();
+    InitializeJDBC.loadTables();
 
-            for (ClientMaxFactureDTO c : clientesMasFacturados){
-                System.out.println(c.toString());
-            }
+    System.out.println("\nEl producto que mas recaudo es: "); //Ejercicio 3
 
-            System.out.println("Product Collected");
+    List<ProductColletedDTO>productCollected = MYSQLProductDAO.getInstance().selectMostProductColleted();
 
-            List<ProductColletedDTO>productCollected = MYSQLProductDAO.getInstance().selectMostProductColleted();
-
-            for (ProductColletedDTO c : productCollected){
-                System.out.println(c.toString());
-            }
-
-        ConnectionMYQSL.closeConnection();
+    for (ProductColletedDTO c : productCollected){
+        System.out.println(c.toString());
     }
+
+    System.out.println("\nClientes mas facturados: "); //Ejercicio 4
+
+    List<ClientMaxFactureDTO>clientesMasFacturados = MYSQLClientDAO.getInstance().selectMaxFacture();
+
+    for (ClientMaxFactureDTO c : clientesMasFacturados){
+        System.out.println(c.toString());
+    }
+
+    ConnectionMYQSL.closeConnection();
+}
 ```
 
 ## Manejo de erroes de ejecución

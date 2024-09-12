@@ -114,7 +114,8 @@ public class MYSQLProductDAO implements ProductDAO {
             String sql = "select p.idProduct, pr.name, pr.price price, sum(p.cantidad) cantTotal, (sum(p.cantidad) * price) recaudacion " +
                          "from facture_product p " +
                          "join product pr on (p.idProduct = pr.idProduct) " +
-                         "group by p.idProduct order by recaudacion desc ";
+                         "group by p.idProduct order by recaudacion desc " +
+                         "limit 1";
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()){

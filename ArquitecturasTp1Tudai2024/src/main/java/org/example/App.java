@@ -18,21 +18,21 @@ public class App {
         InitializeJDBC.createSchema();
         InitializeJDBC.loadTables();
 
-            System.out.println("Clientes mas facturados");
+        System.out.println("\nEl producto que mas recaudo es: "); //Ejercicio 3
 
-            List<ClientMaxFactureDTO>clientesMasFacturados = MYSQLClientDAO.getInstance().selectMaxFacture();
+        List<ProductColletedDTO>productCollected = MYSQLProductDAO.getInstance().selectMostProductColleted();
 
-            for (ClientMaxFactureDTO c : clientesMasFacturados){
-                System.out.println(c.toString());
-            }
+        for (ProductColletedDTO c : productCollected){
+            System.out.println(c.toString());
+        }
 
-            System.out.println("Product Collected");
+        System.out.println("\nClientes mas facturados: "); //Ejercicio 4
 
-            List<ProductColletedDTO>productCollected = MYSQLProductDAO.getInstance().selectMostProductColleted();
+        List<ClientMaxFactureDTO>clientesMasFacturados = MYSQLClientDAO.getInstance().selectMaxFacture();
 
-            for (ProductColletedDTO c : productCollected){
-                System.out.println(c.toString());
-            }
+        for (ClientMaxFactureDTO c : clientesMasFacturados){
+            System.out.println(c.toString());
+        }
 
         ConnectionMYQSL.closeConnection();
     }
