@@ -7,11 +7,9 @@ import entity.Product;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-import java.nio.file.Paths;
 
 public class CSVreader {
 
@@ -19,13 +17,13 @@ public class CSVreader {
 
         public List<Client> readFileClient() {
                 List<Client> clients = new ArrayList<>();
-                String csvFile = Paths.get(PATH,"clientes.csv").toString();
+                String csvFile = PATH+"clientes.csv";
                 String line = "";
                 String cvsSplitBy = ",";
 
                 try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
                         while ((line = br.readLine()) != null) {
-                                // Usamos la coma como separador
+                                //se usa la coma como separador
                                 String[] datos = line.split(cvsSplitBy);
                                 Client c = new Client(Integer.parseInt(datos[0]), datos[1], datos[2]);
                                 clients.add(c);
@@ -38,13 +36,13 @@ public class CSVreader {
 
         public List<Product> readFileProduct() {
                 List<Product> products = new ArrayList<>();
-                String csvFile = Paths.get(PATH,"productos.csv").toString();
+                String csvFile = PATH+"productos.csv";
                 String line = "";
                 String cvsSplitBy = ",";
 
                 try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
                         while ((line = br.readLine()) != null) {
-                                // Usamos la coma como separador
+                                //se usa la coma como separador
                                 String[] datos = line.split(cvsSplitBy);
                                 Product p = new Product(Integer.parseInt(datos[0]), datos[1], Float.parseFloat(datos[2]));
                                 //System.out.print(datos[2]);
@@ -59,13 +57,13 @@ public class CSVreader {
 
         public List<Facture> readFileFacture() {
                 List<Facture> factures = new ArrayList<>();
-                String csvFile = Paths.get(PATH,"facturas.csv").toString();
+                String csvFile = PATH+"facturas.csv";
                 String line = "";
                 String cvsSplitBy = ",";
 
                 try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
                         while ((line = br.readLine()) != null) {
-                                // Usamos la coma como separador
+                                //se usa la coma como separador
                                 String[] datos = line.split(cvsSplitBy);
                                 Facture f = new Facture(Integer.parseInt(datos[0]), Integer.parseInt(datos[1]));
                                 factures.add(f);
@@ -78,13 +76,13 @@ public class CSVreader {
 
         public List<Facture_Product> readFileFactureProduct() {
                 List<Facture_Product> factures_products = new ArrayList<>();
-                String csvFile = Paths.get(PATH,"facturas-productos.csv").toString();
+                String csvFile = PATH+"facturas-productos.csv";
                 String line = "";
                 String cvsSplitBy = ",";
 
                 try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
                         while ((line = br.readLine()) != null) {
-                                // Usamos la coma como separador
+                                //se usa la coma como separador
                                 String[] datos = line.split(cvsSplitBy);
                                 Facture_Product f = new Facture_Product(Integer.parseInt(datos[0]),
                                         Integer.parseInt(datos[1]), Integer.parseInt(datos[2]));
