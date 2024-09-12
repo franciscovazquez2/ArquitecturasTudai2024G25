@@ -1,19 +1,8 @@
 package dao.Interfaces;
 
+import dao.helper.CompoudKey;
 import entity.Facture_Product;
 
-import java.sql.SQLException;
-import java.util.List;
+public interface Facture_ProductDAO extends CrudDao <Facture_Product, CompoudKey> {
 
-public interface Facture_ProductDAO {
-
-    void insert(Facture_Product fp) throws SQLException;
-
-    boolean delete(int id_f, int id_p) throws SQLException;
-
-    public List<Facture_Product> selectAll() throws SQLException;
-
-    public boolean update() throws SQLException;
-
-    Facture_Product select(int id_f, int id_p) throws SQLException;
 }
