@@ -14,7 +14,7 @@ public class CSVreader {
 
         public List<Client> readFileClient() {
                 List<Client> clients = new ArrayList<>();
-                String csvFile = ".\\src\\main\\java\\CSVfiles\\clientes.csv";
+                String csvFile = "ArquitecturasTp1Tudai2024/src/main/java/csvFiles/clientes.csv";
                 String line = "";
                 String cvsSplitBy = ",";
 
@@ -33,7 +33,7 @@ public class CSVreader {
 
         public List<Product> readFileProduct() {
                 List<Product> products = new ArrayList<>();
-                String csvFile = ".\\src\\main\\java\\CSVfiles\\productos.csv";
+                String csvFile = "ArquitecturasTp1Tudai2024/src/main/java/csvFiles/productos.csv";
                 String line = "";
                 String cvsSplitBy = ",";
 
@@ -54,7 +54,7 @@ public class CSVreader {
 
         public List<Facture> readFileFacture() {
                 List<Facture> factures = new ArrayList<>();
-                String csvFile = ".\\src\\main\\java\\CSVfiles\\facturas.csv";
+                String csvFile = "ArquitecturasTp1Tudai2024/src/main/java/csvFiles/facturas.csv";
                 String line = "";
                 String cvsSplitBy = ",";
 
@@ -73,7 +73,7 @@ public class CSVreader {
 
         public List<Facture_Product> readFileFactureProduct() {
                 List<Facture_Product> factures_products = new ArrayList<>();
-                String csvFile = ".\\src\\main\\java\\CSVfiles\\facturas-productos.csv";
+                String csvFile = "ArquitecturasTp1Tudai2024/src/main/java/csvFiles/facturas-productos.csv";
                 String line = "";
                 String cvsSplitBy = ",";
 
