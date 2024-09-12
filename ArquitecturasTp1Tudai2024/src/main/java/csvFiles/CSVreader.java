@@ -12,9 +12,11 @@ import java.util.List;
 
 public class CSVreader {
 
+        private static final String PATH="ArquitecturasTp1Tudai2024/src/main/java/csvFiles/";
+
         public List<Client> readFileClient() {
                 List<Client> clients = new ArrayList<>();
-                String csvFile = "ArquitecturasTp1Tudai2024/src/main/java/csvFiles/clientes.csv";
+                String csvFile = PATH+"clientes.csv";
                 String line = "";
                 String cvsSplitBy = ",";
 
@@ -33,7 +35,7 @@ public class CSVreader {
 
         public List<Product> readFileProduct() {
                 List<Product> products = new ArrayList<>();
-                String csvFile = "ArquitecturasTp1Tudai2024/src/main/java/csvFiles/productos.csv";
+                String csvFile = PATH+"productos.csv";
                 String line = "";
                 String cvsSplitBy = ",";
 
@@ -54,7 +56,7 @@ public class CSVreader {
 
         public List<Facture> readFileFacture() {
                 List<Facture> factures = new ArrayList<>();
-                String csvFile = "ArquitecturasTp1Tudai2024/src/main/java/csvFiles/facturas.csv";
+                String csvFile = PATH+"facturas.csv";
                 String line = "";
                 String cvsSplitBy = ",";
 
@@ -73,7 +75,7 @@ public class CSVreader {
 
         public List<Facture_Product> readFileFactureProduct() {
                 List<Facture_Product> factures_products = new ArrayList<>();
-                String csvFile = "ArquitecturasTp1Tudai2024/src/main/java/csvFiles/facturas-productos.csv";
+                String csvFile = PATH+"facturas-productos.csv";
                 String line = "";
                 String cvsSplitBy = ",";
 

@@ -15,7 +15,7 @@ public class App {
 
         ConnectionMYQSL.getConnection();
 
-        //InitializeJDBC.createSchema();
+        InitializeJDBC.createSchema();
         InitializeJDBC.loadTables();
 
             System.out.println("Clientes mas facturados");
