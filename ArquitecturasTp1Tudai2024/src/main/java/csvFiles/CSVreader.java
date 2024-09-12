@@ -7,8 +7,11 @@ import entity.Product;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+
+import java.nio.file.Paths;
 
 public class CSVreader {
 
@@ -16,7 +19,7 @@ public class CSVreader {
 
         public List<Client> readFileClient() {
                 List<Client> clients = new ArrayList<>();
-                String csvFile = PATH+"clientes.csv";
+                String csvFile = Paths.get(PATH,"clientes.csv").toString();
                 String line = "";
                 String cvsSplitBy = ",";
 
@@ -35,7 +38,7 @@ public class CSVreader {
 
         public List<Product> readFileProduct() {
                 List<Product> products = new ArrayList<>();
-                String csvFile = PATH+"productos.csv";
+                String csvFile = Paths.get(PATH,"productos.csv").toString();
                 String line = "";
                 String cvsSplitBy = ",";
 
@@ -56,7 +59,7 @@ public class CSVreader {
 
         public List<Facture> readFileFacture() {
                 List<Facture> factures = new ArrayList<>();
-                String csvFile = PATH+"facturas.csv";
+                String csvFile = Paths.get(PATH,"facturas.csv").toString();
                 String line = "";
                 String cvsSplitBy = ",";
 
@@ -75,7 +78,7 @@ public class CSVreader {
 
         public List<Facture_Product> readFileFactureProduct() {
                 List<Facture_Product> factures_products = new ArrayList<>();
-                String csvFile = PATH+"facturas-productos.csv";
+                String csvFile = Paths.get(PATH,"facturas-productos.csv").toString();
                 String line = "";
                 String cvsSplitBy = ",";
 
